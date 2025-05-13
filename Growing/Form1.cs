@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlTypes;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace Growing
 {
     public partial class Form1 : Form
     {
+        private DatabaseManager DB;
         private int money = 0;
         private List<Button> hireButtons;
         private Dictionary<Timer, Worker> timerToWorker;
@@ -22,6 +24,24 @@ namespace Growing
         public Form1()
         {
             InitializeComponent();
+            SetUpDatabaseManager();
+        }
+
+        private void SetUpDatabaseManager()
+        {
+            // database set up function
+
+            DB = DatabaseManager.GetInstance();
+
+            if (File.Exists(DB.savePath + "save.csv")) {
+                // 초기화가 됐다면
+                DB.LoadingPlayerData();
+                money = DB.GetMoney();
+            }
+            else
+            {
+                // 엄
+            }
         }
 
         // Worker 리스트
@@ -94,6 +114,10 @@ namespace Growing
             updateCountdownTMR.Start();
 
             UpdateButtonStates();
+        }
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DB.SavePlayerData(new PlayerData("정보보안의 갓핸드_박요한", money));
         }
 
         private void HireWorker(Worker worker, Timer tmr)

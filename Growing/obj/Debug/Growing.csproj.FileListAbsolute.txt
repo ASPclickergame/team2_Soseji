@@ -8,3 +8,13 @@ C:\Users\User\Desktop\ASP_Project\team2_Soseji\Growing\obj\Debug\Growing.csproj.
 C:\Users\User\Desktop\ASP_Project\team2_Soseji\Growing\obj\Debug\Growing.csproj.CoreCompileInputs.cache
 C:\Users\User\Desktop\ASP_Project\team2_Soseji\Growing\obj\Debug\Growing.exe
 C:\Users\User\Desktop\ASP_Project\team2_Soseji\Growing\obj\Debug\Growing.pdb
+C:\Users\User\Desktop\응소실\team2_Soseji\Growing\bin\Debug\Growing.exe.config
+C:\Users\User\Desktop\응소실\team2_Soseji\Growing\bin\Debug\Growing.exe
+C:\Users\User\Desktop\응소실\team2_Soseji\Growing\bin\Debug\Growing.pdb
+C:\Users\User\Desktop\응소실\team2_Soseji\Growing\obj\Debug\Growing.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\응소실\team2_Soseji\Growing\obj\Debug\Growing.Form1.resources
+C:\Users\User\Desktop\응소실\team2_Soseji\Growing\obj\Debug\Growing.Properties.Resources.resources
+C:\Users\User\Desktop\응소실\team2_Soseji\Growing\obj\Debug\Growing.csproj.GenerateResource.cache
+C:\Users\User\Desktop\응소실\team2_Soseji\Growing\obj\Debug\Growing.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\응소실\team2_Soseji\Growing\obj\Debug\Growing.exe
+C:\Users\User\Desktop\응소실\team2_Soseji\Growing\obj\Debug\Growing.pdb
