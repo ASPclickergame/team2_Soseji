@@ -16,5 +16,10 @@ namespace Growing
         {
             InitializeComponent();
         }
+
+        private void MDlstock_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
