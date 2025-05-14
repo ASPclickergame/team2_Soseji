@@ -299,6 +299,11 @@ namespace Growing
                 MessageBox.Show("돈이 부족합니다!");
             }
         }
+
+        private void jusikBtn_Click(object sender, EventArgs e)
+        {
+            MDlstock md = new MDlstock();
+        }
     }
 
     public class Worker

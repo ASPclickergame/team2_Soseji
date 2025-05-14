@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\HamDaeyoung\\source\\repos\\team2_Soseji\\Growing\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FC834963-C954-4578-9668-81D8A28F3391}|Growing.csproj|C:\\Users\\HamDaeyoung\\source\\repos\\team2_Soseji\\Growing\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{FC834963-C954-4578-9668-81D8A28F3391}|Growing.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC834963-C954-4578-9668-81D8A28F3391}|Growing.csproj|C:\\Users\\HamDaeyoung\\source\\repos\\team2_Soseji\\Growing\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC834963-C954-4578-9668-81D8A28F3391}|Growing.csproj|solutionrelative:form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FC834963-C954-4578-9668-81D8A28F3391}|Growing.csproj|C:\\Users\\HamDaeyoung\\source\\repos\\team2_Soseji\\Growing\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FC834963-C954-4578-9668-81D8A28F3391}|Growing.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{FC834963-C954-4578-9668-81D8A28F3391}|Growing.csproj|C:\\Users\\HamDaeyoung\\source\\repos\\team2_Soseji\\Growing\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{FC834963-C954-4578-9668-81D8A28F3391}|Growing.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC834963-C954-4578-9668-81D8A28F3391}|Growing.csproj|c:\\users\\hamdaeyoung\\source\\repos\\team2_soseji\\growing\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{FC834963-C954-4578-9668-81D8A28F3391}|Growing.csproj|solutionrelative:form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FC834963-C954-4578-9668-81D8A28F3391}|Growing.csproj|c:\\users\\hamdaeyoung\\source\\repos\\team2_soseji\\growing\\stock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FC834963-C954-4578-9668-81D8A28F3391}|Growing.csproj|solutionrelative:stock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC834963-C954-4578-9668-81D8A28F3391}|Growing.csproj|C:\\Users\\HamDaeyoung\\source\\repos\\team2_Soseji\\Growing\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC834963-C954-4578-9668-81D8A28F3391}|Growing.csproj|solutionrelative:form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,6 +38,18 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form2.cs [\uB514\uC790\uC778]",
+              "DocumentMoniker": "C:\\Users\\HamDaeyoung\\source\\repos\\team2_Soseji\\Growing\\Form2.cs",
+              "RelativeDocumentMoniker": "Form2.cs",
+              "ToolTip": "C:\\Users\\HamDaeyoung\\source\\repos\\team2_Soseji\\Growing\\Form2.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "Form2.cs [\uB514\uC790\uC778]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T09:04:05.566Z",
+              "EditorCaption": " [\uB514\uC790\uC778]"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
               "Title": "stock.cs",
               "DocumentMoniker": "C:\\Users\\HamDaeyoung\\source\\repos\\team2_Soseji\\Growing\\stock.cs",
@@ -47,12 +63,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Form1.Designer.cs",
               "DocumentMoniker": "C:\\Users\\HamDaeyoung\\source\\repos\\team2_Soseji\\Growing\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "Form1.Designer.cs",
-              "ToolTip": "C:\\Users\\HamDaeyoung\\source\\repos\\team2_Soseji\\Growing\\Form1.Designer.cs*",
-              "RelativeToolTip": "Form1.Designer.cs*",
+              "ToolTip": "C:\\Users\\HamDaeyoung\\source\\repos\\team2_Soseji\\Growing\\Form1.Designer.cs",
+              "RelativeToolTip": "Form1.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-13T15:02:06.026Z",
@@ -60,25 +76,25 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\HamDaeyoung\\source\\repos\\team2_Soseji\\Growing\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\HamDaeyoung\\source\\repos\\team2_Soseji\\Growing\\Form1.cs*",
-              "RelativeToolTip": "Form1.cs*",
-              "ViewState": "AgIAACQBAAAAAAAAAAAAADABAAAFAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\HamDaeyoung\\source\\repos\\team2_Soseji\\Growing\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AgIAAB0BAAAAAAAAAAAtwDABAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-13T15:01:53.026Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Form1.cs [\uB514\uC790\uC778]",
               "DocumentMoniker": "C:\\Users\\HamDaeyoung\\source\\repos\\team2_Soseji\\Growing\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\HamDaeyoung\\source\\repos\\team2_Soseji\\Growing\\Form1.cs [\uB514\uC790\uC778]*",
-              "RelativeToolTip": "Form1.cs [\uB514\uC790\uC778]*",
+              "ToolTip": "C:\\Users\\HamDaeyoung\\source\\repos\\team2_Soseji\\Growing\\Form1.cs [\uB514\uC790\uC778]",
+              "RelativeToolTip": "Form1.cs [\uB514\uC790\uC778]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-13T14:57:26.303Z",
               "EditorCaption": " [\uB514\uC790\uC778]"

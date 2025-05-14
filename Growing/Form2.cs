@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MdlStock
+namespace Growing
 {
-    public partial class StockMDL : Form
+    public partial class MDlstock : Form
     {
-        public StockMDL()
+        public MDlstock()
         {
             InitializeComponent();
-        }
-
-        private void StockMDL_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

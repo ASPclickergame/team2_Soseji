@@ -244,6 +244,7 @@
             this.jusikBtn.TabIndex = 10;
             this.jusikBtn.Text = "거래소 입장";
             this.jusikBtn.UseVisualStyleBackColor = true;
+            this.jusikBtn.Click += new System.EventHandler(this.jusikBtn_Click);
             // 
             // Form1
             // 
