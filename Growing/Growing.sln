@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Growing", "Growing.csproj", "{FC834963-C954-4578-9668-81D8A28F3391}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MdlStock", "..\MdlStock\MdlStock.csproj", "{A4888BB6-5508-4385-A5E8-5D161A10C22A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FC834963-C954-4578-9668-81D8A28F3391}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC834963-C954-4578-9668-81D8A28F3391}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC834963-C954-4578-9668-81D8A28F3391}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4888BB6-5508-4385-A5E8-5D161A10C22A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4888BB6-5508-4385-A5E8-5D161A10C22A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4888BB6-5508-4385-A5E8-5D161A10C22A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4888BB6-5508-4385-A5E8-5D161A10C22A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

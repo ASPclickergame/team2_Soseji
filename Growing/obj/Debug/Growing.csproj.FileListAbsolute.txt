@@ -18,3 +18,13 @@ C:\Users\이호준\OneDrive - 광운대학교\바탕 화면\eunsosil\Growing\obj
 C:\Users\이호준\OneDrive - 광운대학교\바탕 화면\eunsosil\Growing\obj\Debug\Growing.csproj.CoreCompileInputs.cache
 C:\Users\이호준\OneDrive - 광운대학교\바탕 화면\eunsosil\Growing\obj\Debug\Growing.exe
 C:\Users\이호준\OneDrive - 광운대학교\바탕 화면\eunsosil\Growing\obj\Debug\Growing.pdb
+C:\Users\HamDaeyoung\source\repos\team2_Soseji\Growing\bin\Debug\Growing.exe.config
+C:\Users\HamDaeyoung\source\repos\team2_Soseji\Growing\bin\Debug\Growing.exe
+C:\Users\HamDaeyoung\source\repos\team2_Soseji\Growing\bin\Debug\Growing.pdb
+C:\Users\HamDaeyoung\source\repos\team2_Soseji\Growing\obj\Debug\Growing.csproj.AssemblyReference.cache
+C:\Users\HamDaeyoung\source\repos\team2_Soseji\Growing\obj\Debug\Growing.Form1.resources
+C:\Users\HamDaeyoung\source\repos\team2_Soseji\Growing\obj\Debug\Growing.Properties.Resources.resources
+C:\Users\HamDaeyoung\source\repos\team2_Soseji\Growing\obj\Debug\Growing.csproj.GenerateResource.cache
+C:\Users\HamDaeyoung\source\repos\team2_Soseji\Growing\obj\Debug\Growing.csproj.CoreCompileInputs.cache
+C:\Users\HamDaeyoung\source\repos\team2_Soseji\Growing\obj\Debug\Growing.exe
+C:\Users\HamDaeyoung\source\repos\team2_Soseji\Growing\obj\Debug\Growing.pdb
