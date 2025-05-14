@@ -28,3 +28,4 @@ C:\Users\HamDaeyoung\source\repos\team2_Soseji\Growing\obj\Debug\Growing.csproj.
 C:\Users\HamDaeyoung\source\repos\team2_Soseji\Growing\obj\Debug\Growing.csproj.CoreCompileInputs.cache
 C:\Users\HamDaeyoung\source\repos\team2_Soseji\Growing\obj\Debug\Growing.exe
 C:\Users\HamDaeyoung\source\repos\team2_Soseji\Growing\obj\Debug\Growing.pdb
+C:\Users\HamDaeyoung\source\repos\team2_Soseji\Growing\obj\Debug\Growing.MDLstock.resources

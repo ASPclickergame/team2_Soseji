@@ -14,6 +14,7 @@ namespace Growing
     public partial class Form1 : Form
     {
 
+        private MDLstock md;
         private int money = 0;
         private List<Button> hireButtons;
         private Dictionary<Timer, Worker> timerToWorker;
@@ -302,7 +303,17 @@ namespace Growing
 
         private void jusikBtn_Click(object sender, EventArgs e)
         {
-            MDlstock md = new MDlstock();
+            
+            if (md == null || md.IsDisposed)
+            {
+                md = new MDLstock();
+                md.Owner = this;
+                md.Show(); // ✅ 모달리스로 한 번만 띄움
+            }
+            else
+            {
+                md.BringToFront(); // 이미 열려 있으면 앞으로 가져오기
+            }
         }
     }
 

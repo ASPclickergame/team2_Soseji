@@ -44,6 +44,7 @@
             this.gameTMR = new System.Windows.Forms.Timer(this.components);
             this.btncheckTMR = new System.Windows.Forms.Timer(this.components);
             this.clickPNL = new System.Windows.Forms.Panel();
+            this.jusikBtn = new System.Windows.Forms.Button();
             this.levelupBTN_Click = new System.Windows.Forms.Button();
             this.expCostLBL = new System.Windows.Forms.Label();
             this.expLBL = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@
             this.secondJobTimerLBL = new System.Windows.Forms.Label();
             this.firstJobTimerLBL = new System.Windows.Forms.Label();
             this.updateCountdownTMR = new System.Windows.Forms.Timer(this.components);
-            this.jusikBtn = new System.Windows.Forms.Button();
             this.clickPNL.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -146,10 +146,20 @@
             this.clickPNL.TabIndex = 11;
             this.clickPNL.Click += new System.EventHandler(this.clickPNL_Click);
             // 
+            // jusikBtn
+            // 
+            this.jusikBtn.Location = new System.Drawing.Point(953, 30);
+            this.jusikBtn.Name = "jusikBtn";
+            this.jusikBtn.Size = new System.Drawing.Size(201, 53);
+            this.jusikBtn.TabIndex = 10;
+            this.jusikBtn.Text = "거래소 입장";
+            this.jusikBtn.UseVisualStyleBackColor = true;
+            this.jusikBtn.Click += new System.EventHandler(this.jusikBtn_Click);
+            // 
             // levelupBTN_Click
             // 
             this.levelupBTN_Click.Location = new System.Drawing.Point(868, 773);
-            this.levelupBTN_Click.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.levelupBTN_Click.Margin = new System.Windows.Forms.Padding(5);
             this.levelupBTN_Click.Name = "levelupBTN_Click";
             this.levelupBTN_Click.Size = new System.Drawing.Size(286, 58);
             this.levelupBTN_Click.TabIndex = 9;
@@ -235,16 +245,6 @@
             this.firstJobTimerLBL.Name = "firstJobTimerLBL";
             this.firstJobTimerLBL.Size = new System.Drawing.Size(0, 24);
             this.firstJobTimerLBL.TabIndex = 0;
-            // 
-            // jusikBtn
-            // 
-            this.jusikBtn.Location = new System.Drawing.Point(939, 30);
-            this.jusikBtn.Name = "jusikBtn";
-            this.jusikBtn.Size = new System.Drawing.Size(201, 53);
-            this.jusikBtn.TabIndex = 10;
-            this.jusikBtn.Text = "거래소 입장";
-            this.jusikBtn.UseVisualStyleBackColor = true;
-            this.jusikBtn.Click += new System.EventHandler(this.jusikBtn_Click);
             // 
             // Form1
             // 

@@ -1,6 +1,6 @@
 ﻿namespace Growing
 {
-    partial class MDlstock
+    partial class MDLstock
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,13 @@
         {
             this.SuspendLayout();
             // 
-            // MDlstock
+            // MDLstock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "MDlstock";
-            this.Text = "Form2";
+            this.Name = "MDLstock";
+            this.Text = "광스피";
             this.Load += new System.EventHandler(this.MDlstock_Load);
             this.ResumeLayout(false);
 

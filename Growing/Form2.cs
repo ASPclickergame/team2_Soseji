@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Growing
 {
-    public partial class MDlstock : Form
+    public partial class MDLstock : Form
     {
-        public MDlstock()
+        public MDLstock()
         {
             InitializeComponent();
         }
