@@ -41,11 +41,10 @@
             this.thirdJobBTN = new System.Windows.Forms.Button();
             this.secondJobBTN = new System.Windows.Forms.Button();
             this.firstJobBTN = new System.Windows.Forms.Button();
-            this.gameTMR = new System.Windows.Forms.Timer(this.components);
             this.btncheckTMR = new System.Windows.Forms.Timer(this.components);
             this.clickPNL = new System.Windows.Forms.Panel();
             this.jusikBtn = new System.Windows.Forms.Button();
-            this.levelupBTN_Click = new System.Windows.Forms.Button();
+            this.levelupBTN = new System.Windows.Forms.Button();
             this.expCostLBL = new System.Windows.Forms.Label();
             this.expLBL = new System.Windows.Forms.Label();
             this.levelLBL = new System.Windows.Forms.Label();
@@ -56,31 +55,33 @@
             this.secondJobTimerLBL = new System.Windows.Forms.Label();
             this.firstJobTimerLBL = new System.Windows.Forms.Label();
             this.updateCountdownTMR = new System.Windows.Forms.Timer(this.components);
+            this.gameTMR = new System.Windows.Forms.Timer(this.components);
             this.clickPNL.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 16);
+            this.label1.Location = new System.Drawing.Point(13, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 24);
+            this.label1.Size = new System.Drawing.Size(73, 21);
             this.label1.TabIndex = 0;
             this.label1.Text = "모은돈";
             // 
             // moneyLBL
             // 
             this.moneyLBL.AutoSize = true;
-            this.moneyLBL.Location = new System.Drawing.Point(109, 16);
+            this.moneyLBL.Location = new System.Drawing.Point(92, 14);
             this.moneyLBL.Name = "moneyLBL";
-            this.moneyLBL.Size = new System.Drawing.Size(0, 24);
+            this.moneyLBL.Size = new System.Drawing.Size(42, 21);
             this.moneyLBL.TabIndex = 1;
+            this.moneyLBL.Text = "0원";
             // 
             // fifthJobBTN
             // 
-            this.fifthJobBTN.Location = new System.Drawing.Point(39, 773);
+            this.fifthJobBTN.Location = new System.Drawing.Point(33, 676);
             this.fifthJobBTN.Name = "fifthJobBTN";
-            this.fifthJobBTN.Size = new System.Drawing.Size(306, 58);
+            this.fifthJobBTN.Size = new System.Drawing.Size(259, 51);
             this.fifthJobBTN.TabIndex = 6;
             this.fifthJobBTN.Text = "건물주";
             this.fifthJobBTN.UseVisualStyleBackColor = true;
@@ -88,9 +89,9 @@
             // 
             // forthJobBTN
             // 
-            this.forthJobBTN.Location = new System.Drawing.Point(39, 683);
+            this.forthJobBTN.Location = new System.Drawing.Point(33, 598);
             this.forthJobBTN.Name = "forthJobBTN";
-            this.forthJobBTN.Size = new System.Drawing.Size(306, 58);
+            this.forthJobBTN.Size = new System.Drawing.Size(259, 51);
             this.forthJobBTN.TabIndex = 7;
             this.forthJobBTN.Text = "공무원";
             this.forthJobBTN.UseVisualStyleBackColor = true;
@@ -98,9 +99,9 @@
             // 
             // thirdJobBTN
             // 
-            this.thirdJobBTN.Location = new System.Drawing.Point(39, 594);
+            this.thirdJobBTN.Location = new System.Drawing.Point(33, 520);
             this.thirdJobBTN.Name = "thirdJobBTN";
-            this.thirdJobBTN.Size = new System.Drawing.Size(306, 58);
+            this.thirdJobBTN.Size = new System.Drawing.Size(259, 51);
             this.thirdJobBTN.TabIndex = 8;
             this.thirdJobBTN.Text = "편의점 알바";
             this.thirdJobBTN.UseVisualStyleBackColor = true;
@@ -108,9 +109,9 @@
             // 
             // secondJobBTN
             // 
-            this.secondJobBTN.Location = new System.Drawing.Point(39, 504);
+            this.secondJobBTN.Location = new System.Drawing.Point(33, 441);
             this.secondJobBTN.Name = "secondJobBTN";
-            this.secondJobBTN.Size = new System.Drawing.Size(306, 58);
+            this.secondJobBTN.Size = new System.Drawing.Size(259, 51);
             this.secondJobBTN.TabIndex = 9;
             this.secondJobBTN.Text = "전단지 알바";
             this.secondJobBTN.UseVisualStyleBackColor = true;
@@ -118,9 +119,9 @@
             // 
             // firstJobBTN
             // 
-            this.firstJobBTN.Location = new System.Drawing.Point(39, 426);
+            this.firstJobBTN.Location = new System.Drawing.Point(33, 373);
             this.firstJobBTN.Name = "firstJobBTN";
-            this.firstJobBTN.Size = new System.Drawing.Size(306, 58);
+            this.firstJobBTN.Size = new System.Drawing.Size(259, 51);
             this.firstJobBTN.TabIndex = 10;
             this.firstJobBTN.Text = "노숙자";
             this.firstJobBTN.UseVisualStyleBackColor = true;
@@ -129,7 +130,7 @@
             // clickPNL
             // 
             this.clickPNL.Controls.Add(this.jusikBtn);
-            this.clickPNL.Controls.Add(this.levelupBTN_Click);
+            this.clickPNL.Controls.Add(this.levelupBTN);
             this.clickPNL.Controls.Add(this.expCostLBL);
             this.clickPNL.Controls.Add(this.expLBL);
             this.clickPNL.Controls.Add(this.levelLBL);
@@ -142,115 +143,115 @@
             this.clickPNL.Dock = System.Windows.Forms.DockStyle.Fill;
             this.clickPNL.Location = new System.Drawing.Point(0, 0);
             this.clickPNL.Name = "clickPNL";
-            this.clickPNL.Size = new System.Drawing.Size(1233, 894);
+            this.clickPNL.Size = new System.Drawing.Size(1043, 782);
             this.clickPNL.TabIndex = 11;
             this.clickPNL.Click += new System.EventHandler(this.clickPNL_Click);
             // 
             // jusikBtn
             // 
-            this.jusikBtn.Location = new System.Drawing.Point(953, 30);
+            this.jusikBtn.Location = new System.Drawing.Point(806, 26);
             this.jusikBtn.Name = "jusikBtn";
-            this.jusikBtn.Size = new System.Drawing.Size(201, 53);
+            this.jusikBtn.Size = new System.Drawing.Size(170, 46);
             this.jusikBtn.TabIndex = 10;
             this.jusikBtn.Text = "거래소 입장";
             this.jusikBtn.UseVisualStyleBackColor = true;
             this.jusikBtn.Click += new System.EventHandler(this.jusikBtn_Click);
             // 
-            // levelupBTN_Click
+            // levelupBTN
             // 
-            this.levelupBTN_Click.Location = new System.Drawing.Point(868, 773);
-            this.levelupBTN_Click.Margin = new System.Windows.Forms.Padding(5);
-            this.levelupBTN_Click.Name = "levelupBTN_Click";
-            this.levelupBTN_Click.Size = new System.Drawing.Size(286, 58);
-            this.levelupBTN_Click.TabIndex = 9;
-            this.levelupBTN_Click.Text = "레벨 업";
-            this.levelupBTN_Click.UseVisualStyleBackColor = true;
-            this.levelupBTN_Click.Click += new System.EventHandler(this.levelupBTN_Click_Click);
+            this.levelupBTN.Location = new System.Drawing.Point(734, 676);
+            this.levelupBTN.Margin = new System.Windows.Forms.Padding(4);
+            this.levelupBTN.Name = "levelupBTN";
+            this.levelupBTN.Size = new System.Drawing.Size(242, 51);
+            this.levelupBTN.TabIndex = 9;
+            this.levelupBTN.Text = "레벨 업(&F)";
+            this.levelupBTN.UseVisualStyleBackColor = true;
+            this.levelupBTN.Click += new System.EventHandler(this.levelupBTN_Click);
             // 
             // expCostLBL
             // 
             this.expCostLBL.AutoSize = true;
-            this.expCostLBL.Location = new System.Drawing.Point(15, 139);
-            this.expCostLBL.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.expCostLBL.Location = new System.Drawing.Point(13, 122);
+            this.expCostLBL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.expCostLBL.Name = "expCostLBL";
-            this.expCostLBL.Size = new System.Drawing.Size(69, 24);
+            this.expCostLBL.Size = new System.Drawing.Size(58, 21);
             this.expCostLBL.TabIndex = 8;
             this.expCostLBL.Text = "label5";
             // 
             // expLBL
             // 
             this.expLBL.AutoSize = true;
-            this.expLBL.Location = new System.Drawing.Point(15, 99);
-            this.expLBL.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.expLBL.Location = new System.Drawing.Point(13, 87);
+            this.expLBL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.expLBL.Name = "expLBL";
-            this.expLBL.Size = new System.Drawing.Size(69, 24);
+            this.expLBL.Size = new System.Drawing.Size(58, 21);
             this.expLBL.TabIndex = 7;
             this.expLBL.Text = "label3";
             // 
             // levelLBL
             // 
             this.levelLBL.AutoSize = true;
-            this.levelLBL.Location = new System.Drawing.Point(15, 59);
-            this.levelLBL.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.levelLBL.Location = new System.Drawing.Point(13, 52);
+            this.levelLBL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.levelLBL.Name = "levelLBL";
-            this.levelLBL.Size = new System.Drawing.Size(69, 24);
+            this.levelLBL.Size = new System.Drawing.Size(58, 21);
             this.levelLBL.TabIndex = 6;
             this.levelLBL.Text = "label2";
             // 
             // thirdJobTimerLBL
             // 
             this.thirdJobTimerLBL.AutoSize = true;
-            this.thirdJobTimerLBL.Location = new System.Drawing.Point(332, 611);
+            this.thirdJobTimerLBL.Location = new System.Drawing.Point(312, 534);
             this.thirdJobTimerLBL.Name = "thirdJobTimerLBL";
-            this.thirdJobTimerLBL.Size = new System.Drawing.Size(0, 24);
+            this.thirdJobTimerLBL.Size = new System.Drawing.Size(0, 21);
             this.thirdJobTimerLBL.TabIndex = 5;
             // 
             // fifthJobTimerLBL
             // 
             this.fifthJobTimerLBL.AutoSize = true;
-            this.fifthJobTimerLBL.Location = new System.Drawing.Point(332, 790);
+            this.fifthJobTimerLBL.Location = new System.Drawing.Point(312, 690);
             this.fifthJobTimerLBL.Name = "fifthJobTimerLBL";
-            this.fifthJobTimerLBL.Size = new System.Drawing.Size(0, 24);
+            this.fifthJobTimerLBL.Size = new System.Drawing.Size(0, 21);
             this.fifthJobTimerLBL.TabIndex = 4;
             // 
             // forthJobTimerLBL
             // 
             this.forthJobTimerLBL.AutoSize = true;
-            this.forthJobTimerLBL.Location = new System.Drawing.Point(332, 701);
+            this.forthJobTimerLBL.Location = new System.Drawing.Point(312, 612);
             this.forthJobTimerLBL.Name = "forthJobTimerLBL";
-            this.forthJobTimerLBL.Size = new System.Drawing.Size(0, 24);
+            this.forthJobTimerLBL.Size = new System.Drawing.Size(0, 21);
             this.forthJobTimerLBL.TabIndex = 3;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 18);
+            this.label4.Location = new System.Drawing.Point(17, 16);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(69, 24);
+            this.label4.Size = new System.Drawing.Size(58, 21);
             this.label4.TabIndex = 2;
             this.label4.Text = "label4";
             // 
             // secondJobTimerLBL
             // 
             this.secondJobTimerLBL.AutoSize = true;
-            this.secondJobTimerLBL.Location = new System.Drawing.Point(332, 522);
+            this.secondJobTimerLBL.Location = new System.Drawing.Point(312, 456);
             this.secondJobTimerLBL.Name = "secondJobTimerLBL";
-            this.secondJobTimerLBL.Size = new System.Drawing.Size(0, 24);
+            this.secondJobTimerLBL.Size = new System.Drawing.Size(0, 21);
             this.secondJobTimerLBL.TabIndex = 1;
             // 
             // firstJobTimerLBL
             // 
             this.firstJobTimerLBL.AutoSize = true;
-            this.firstJobTimerLBL.Location = new System.Drawing.Point(332, 443);
+            this.firstJobTimerLBL.Location = new System.Drawing.Point(312, 387);
             this.firstJobTimerLBL.Name = "firstJobTimerLBL";
-            this.firstJobTimerLBL.Size = new System.Drawing.Size(0, 24);
+            this.firstJobTimerLBL.Size = new System.Drawing.Size(0, 21);
             this.firstJobTimerLBL.TabIndex = 0;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1233, 894);
+            this.ClientSize = new System.Drawing.Size(1043, 782);
             this.Controls.Add(this.firstJobBTN);
             this.Controls.Add(this.secondJobBTN);
             this.Controls.Add(this.thirdJobBTN);
@@ -259,9 +260,12 @@
             this.Controls.Add(this.moneyLBL);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.clickPNL);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "Growing";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.clickPNL.ResumeLayout(false);
             this.clickPNL.PerformLayout();
             this.ResumeLayout(false);
@@ -283,7 +287,6 @@
         private System.Windows.Forms.Button thirdJobBTN;
         private System.Windows.Forms.Button secondJobBTN;
         private System.Windows.Forms.Button firstJobBTN;
-        private System.Windows.Forms.Timer gameTMR;
         private System.Windows.Forms.Timer btncheckTMR;
         private System.Windows.Forms.Panel clickPNL;
         private System.Windows.Forms.Label thirdJobTimerLBL;
@@ -296,8 +299,9 @@
         private System.Windows.Forms.Label expCostLBL;
         private System.Windows.Forms.Label expLBL;
         private System.Windows.Forms.Label levelLBL;
-        private System.Windows.Forms.Button levelupBTN_Click;
+        private System.Windows.Forms.Button levelupBTN;
         private System.Windows.Forms.Button jusikBtn;
+        private System.Windows.Forms.Timer gameTMR;
     }
 }
 

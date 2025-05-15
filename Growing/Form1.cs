@@ -13,7 +13,6 @@ namespace Growing
 {
     public partial class Form1 : Form
     {
-
         private MDLstock md;
         private int money = 0;
         private List<Button> hireButtons;
@@ -21,21 +20,22 @@ namespace Growing
         private Dictionary<Timer, Label> timerToLabel;
         private Dictionary<Timer, int> timerRemainingTime;
 
-        private int level = 1;  //레벨    
-        private int experience = 0; //현재 경험치
+        private int level = 1;                  //레벨    
+        private int experience = 0;             //현재 경험치
         private int experiencenextlevel = 100;  //레벨업 필요 경험치
-        private int clickIncome = 10000;  //클릭당 수익
+        private int clickIncome = 10000;        //클릭당 수익
 
-        private int expperclick = 20; // 경험치 상승량 퍼센트
-        private int expbuttoncost = 500; // 경험치 버튼 비용
+        private int expperclick = 20;           // 경험치 상승량 퍼센트
+        private int expbuttoncost = 500;        // 경험치 버튼 비용
 
-        private ToolTip jobToolTip = new ToolTip();//툴팁
+        private ToolTip jobToolTip = new ToolTip();     //툴팁
 
         public Form1()
         {
             InitializeComponent();
-            updatelevellabel(); //레벨 업데이트
-            this.DoubleBuffered = true;//마우스 클릭 입력 속도 가속
+            updatelevellabel();              //레벨 업데이트
+            this.DoubleBuffered = true;     //마우스 클릭 입력 속도 가속
+
         }
 
         // Worker 리스트
@@ -50,8 +50,6 @@ namespace Growing
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.Cursor = Cursors.Hand;
-
             // 버튼 순서 일치
             hireButtons = new List<Button> { firstJobBTN, secondJobBTN, thirdJobBTN, forthJobBTN, fifthJobBTN };
 
@@ -60,14 +58,14 @@ namespace Growing
             btncheckTMR.Tick += (s, eArgs) => UpdateButtonStates();
             btncheckTMR.Start();
 
-            // 1초마다 10원 자동 수익
-            gameTMR.Interval = 100;
-            gameTMR.Tick += (s, eArgs) =>
-            {
-                money += 1;
-                UpdateMoneyLabel();
-            };
-            gameTMR.Start();
+       
+            //gameTMR.Interval = 100;
+            //gameTMR.Tick += (s, eArgs) =>
+            //{
+            //    money += 1;
+            //    UpdateMoneyLabel();
+            //};
+            //gameTMR.Start();
 
             // 각 알바 타이머 -> 알바 매핑
             timerToWorker = new Dictionary<Timer, Worker>
@@ -107,8 +105,6 @@ namespace Growing
             updateCountdownTMR.Tick += UpdateRemainingTimes;
             updateCountdownTMR.Start();
 
-            this.Cursor = Cursors.Hand;
-
             jobToolTip.InitialDelay = 0; // 마우스를 올리면 툴팁 바로 표시
             jobToolTip.ReshowDelay = 0; // 지연 없이 툴팁 표시 
             jobToolTip.ShowAlways = true; // 컨트롤이 false여도 표시
@@ -121,7 +117,6 @@ namespace Growing
                 string tooltipText = $"Lv {w.RequiredLevel} 필요 - 클릭하여 고용"; //버튼 위에 마우스 올라가면 툴팁 표시
                 jobToolTip.SetToolTip(btn, tooltipText);
             }
-
 
             UpdateButtonStates();
         }
@@ -287,7 +282,7 @@ namespace Growing
         }
 
         //레벨업 버튼
-        private void levelupBTN_Click_Click(object sender, EventArgs e)
+        private void levelupBTN_Click(object sender, EventArgs e)
         {
             if (money >= expbuttoncost)
             {
@@ -308,11 +303,18 @@ namespace Growing
             {
                 md = new MDLstock();
                 md.Owner = this;
-                md.Show(); // ✅ 모달리스로 한 번만 띄움
+                md.Show();          // 모달리스로 한 번만 띄움
             }
             else
             {
                 md.BringToFront(); // 이미 열려 있으면 앞으로 가져오기
+            }
+        }
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F)
+            {
+                levelupBTN.PerformClick();
             }
         }
     }
