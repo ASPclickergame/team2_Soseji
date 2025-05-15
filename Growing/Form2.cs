@@ -19,6 +19,8 @@ namespace Growing
         public Label labelMoney;
         public List<Label> labelsPrice = new List<Label>();
         public List<Label> labelsHave = new List<Label>();
+        public List<Button> buttons = new List<Button>();
+        public int selectedIdx = 0;
         public MDLstock(Form1 main)
         {
             InitializeComponent();
@@ -47,6 +49,11 @@ namespace Growing
             labelsHave.Add(stockNum2);
             labelsHave.Add(stockNum3);
             labelsHave.Add(stockNum4);
+
+            buttons.Add(kwangE);
+            buttons.Add(kwangJ);
+            buttons.Add(kwangC);
+            buttons.Add(kwangS);
         }
         public void UpdateLabels()
         {
@@ -58,19 +65,40 @@ namespace Growing
         }
 
         private void buyBtn_Click(object sender, EventArgs e)
-        {
-            int idx = (int)((Button)sender).Tag;
-            stocks[idx].BuyStock(1, ref mainForm.money); // Form1의 money 사용!
+        { 
+            stocks[selectedIdx].BuyStock(1, ref mainForm.money);
             UpdateLabels();
             mainForm.UpdateMoneyLabel(); // 메인폼 라벨도 즉시 갱신
         }
 
         private void sellBtn_Click(object sender, EventArgs e)
         {
-            int idx = (int)((Button)sender).Tag;
-            stocks[idx].SellStock(1, ref mainForm.money);
+            stocks[selectedIdx].SellStock(1, ref mainForm.money);
             UpdateLabels();
             mainForm.UpdateMoneyLabel();
         }
+
+        private void btnSelect0_Click(object sender, EventArgs e) { selectedIdx = 0; UpdateSelectUI(); }
+        private void btnSelect1_Click(object sender, EventArgs e) { selectedIdx = 1; UpdateSelectUI(); }
+        private void btnSelect2_Click(object sender, EventArgs e) { selectedIdx = 2; UpdateSelectUI(); }
+        private void btnSelect3_Click(object sender, EventArgs e) { selectedIdx = 3; UpdateSelectUI(); }
+
+        private void UpdateSelectUI()
+        {
+            // 모든 버튼을 기본색으로
+            kwangE.BackColor = SystemColors.Control;
+            kwangJ.BackColor = SystemColors.Control;
+            kwangC.BackColor = SystemColors.Control;
+            kwangS.BackColor = SystemColors.Control;
+
+            // 선택된 것만 강조색으로
+            if (selectedIdx == 0) kwangE.BackColor = Color.LightBlue;
+            else if (selectedIdx == 1) kwangJ.BackColor = Color.LightBlue;
+            else if (selectedIdx == 2) kwangC.BackColor = Color.LightBlue;
+            else if (selectedIdx == 3) kwangS.BackColor = Color.LightBlue;
+
+
+        }
+
     }
 }

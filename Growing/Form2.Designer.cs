@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.KwangE = new System.Windows.Forms.Button();
+            this.kwangE = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.stockNum1 = new System.Windows.Forms.Label();
             this.curPrice1 = new System.Windows.Forms.Label();
@@ -36,7 +36,7 @@
             this.sellBtn = new System.Windows.Forms.Button();
             this.kwangJ = new System.Windows.Forms.Button();
             this.kwangC = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.kwangS = new System.Windows.Forms.Button();
             this.stockNum2 = new System.Windows.Forms.Label();
             this.stockNum3 = new System.Windows.Forms.Label();
             this.stockNum4 = new System.Windows.Forms.Label();
@@ -46,16 +46,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // KwangE
+            // kwangE
             // 
-            this.KwangE.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.KwangE.Location = new System.Drawing.Point(51, 39);
-            this.KwangE.Margin = new System.Windows.Forms.Padding(2);
-            this.KwangE.Name = "KwangE";
-            this.KwangE.Size = new System.Drawing.Size(100, 30);
-            this.KwangE.TabIndex = 0;
-            this.KwangE.Text = "광운전자";
-            this.KwangE.UseVisualStyleBackColor = true;
+            this.kwangE.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.kwangE.Location = new System.Drawing.Point(51, 39);
+            this.kwangE.Margin = new System.Windows.Forms.Padding(2);
+            this.kwangE.Name = "kwangE";
+            this.kwangE.Size = new System.Drawing.Size(100, 30);
+            this.kwangE.TabIndex = 0;
+            this.kwangE.Text = "광운전자";
+            this.kwangE.UseVisualStyleBackColor = true;
+            this.kwangE.Click += new System.EventHandler(this.btnSelect0_Click);
             // 
             // label1
             // 
@@ -124,6 +125,7 @@
             this.kwangJ.TabIndex = 8;
             this.kwangJ.Text = "광운중공업";
             this.kwangJ.UseVisualStyleBackColor = true;
+            this.kwangJ.Click += new System.EventHandler(this.btnSelect1_Click);
             // 
             // kwangC
             // 
@@ -135,17 +137,19 @@
             this.kwangC.TabIndex = 9;
             this.kwangC.Text = "광운자동차";
             this.kwangC.UseVisualStyleBackColor = true;
+            this.kwangC.Click += new System.EventHandler(this.btnSelect2_Click);
             // 
-            // button2
+            // kwangS
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(51, 188);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 30);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "광운소프트";
-            this.button2.UseVisualStyleBackColor = true;
+            this.kwangS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.kwangS.Location = new System.Drawing.Point(51, 188);
+            this.kwangS.Margin = new System.Windows.Forms.Padding(2);
+            this.kwangS.Name = "kwangS";
+            this.kwangS.Size = new System.Drawing.Size(100, 30);
+            this.kwangS.TabIndex = 10;
+            this.kwangS.Text = "광운소프트";
+            this.kwangS.UseVisualStyleBackColor = true;
+            this.kwangS.Click += new System.EventHandler(this.btnSelect3_Click);
             // 
             // stockNum2
             // 
@@ -236,7 +240,7 @@
             this.Controls.Add(this.stockNum4);
             this.Controls.Add(this.stockNum3);
             this.Controls.Add(this.stockNum2);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.kwangS);
             this.Controls.Add(this.kwangC);
             this.Controls.Add(this.kwangJ);
             this.Controls.Add(this.sellBtn);
@@ -244,7 +248,7 @@
             this.Controls.Add(this.curPrice1);
             this.Controls.Add(this.stockNum1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.KwangE);
+            this.Controls.Add(this.kwangE);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MDLstock";
             this.Text = "광스피";
@@ -256,7 +260,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button KwangE;
+        private System.Windows.Forms.Button kwangE;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label stockNum1;
         private System.Windows.Forms.Label curPrice1;
@@ -264,7 +268,7 @@
         private System.Windows.Forms.Button sellBtn;
         private System.Windows.Forms.Button kwangJ;
         private System.Windows.Forms.Button kwangC;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button kwangS;
         private System.Windows.Forms.Label stockNum2;
         private System.Windows.Forms.Label stockNum3;
         private System.Windows.Forms.Label stockNum4;
