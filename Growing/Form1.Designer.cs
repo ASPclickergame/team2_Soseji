@@ -201,7 +201,7 @@
             // thirdJobTimerLBL
             // 
             this.thirdJobTimerLBL.AutoSize = true;
-            this.thirdJobTimerLBL.Location = new System.Drawing.Point(312, 534);
+            this.thirdJobTimerLBL.Location = new System.Drawing.Point(309, 535);
             this.thirdJobTimerLBL.Name = "thirdJobTimerLBL";
             this.thirdJobTimerLBL.Size = new System.Drawing.Size(0, 21);
             this.thirdJobTimerLBL.TabIndex = 5;
@@ -209,7 +209,7 @@
             // fifthJobTimerLBL
             // 
             this.fifthJobTimerLBL.AutoSize = true;
-            this.fifthJobTimerLBL.Location = new System.Drawing.Point(312, 690);
+            this.fifthJobTimerLBL.Location = new System.Drawing.Point(309, 691);
             this.fifthJobTimerLBL.Name = "fifthJobTimerLBL";
             this.fifthJobTimerLBL.Size = new System.Drawing.Size(0, 21);
             this.fifthJobTimerLBL.TabIndex = 4;
@@ -217,7 +217,7 @@
             // forthJobTimerLBL
             // 
             this.forthJobTimerLBL.AutoSize = true;
-            this.forthJobTimerLBL.Location = new System.Drawing.Point(312, 612);
+            this.forthJobTimerLBL.Location = new System.Drawing.Point(309, 613);
             this.forthJobTimerLBL.Name = "forthJobTimerLBL";
             this.forthJobTimerLBL.Size = new System.Drawing.Size(0, 21);
             this.forthJobTimerLBL.TabIndex = 3;
@@ -234,7 +234,7 @@
             // secondJobTimerLBL
             // 
             this.secondJobTimerLBL.AutoSize = true;
-            this.secondJobTimerLBL.Location = new System.Drawing.Point(312, 456);
+            this.secondJobTimerLBL.Location = new System.Drawing.Point(309, 457);
             this.secondJobTimerLBL.Name = "secondJobTimerLBL";
             this.secondJobTimerLBL.Size = new System.Drawing.Size(0, 21);
             this.secondJobTimerLBL.TabIndex = 1;
@@ -242,7 +242,7 @@
             // firstJobTimerLBL
             // 
             this.firstJobTimerLBL.AutoSize = true;
-            this.firstJobTimerLBL.Location = new System.Drawing.Point(312, 387);
+            this.firstJobTimerLBL.Location = new System.Drawing.Point(309, 388);
             this.firstJobTimerLBL.Name = "firstJobTimerLBL";
             this.firstJobTimerLBL.Size = new System.Drawing.Size(0, 21);
             this.firstJobTimerLBL.TabIndex = 0;
