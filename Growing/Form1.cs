@@ -1,4 +1,5 @@
-﻿using System;
+﻿using growing;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,13 +17,14 @@ namespace Growing
     {
         private DatabaseManager DB;
         private MDLstock md;
-        private int money = 0;
+        public int money = 0;
         private List<Button> hireButtons;
+        public List<Stock> Lstock;
         private Dictionary<Timer, Worker> timerToWorker;
         private Dictionary<Timer, Label> timerToLabel;
         private Dictionary<Timer, int> timerRemainingTime;
 
-        private int level = 1;                  //레벨    
+        public int level = 1;                  //레벨    
         private int experience = 0;             //현재 경험치
         private int experiencenextlevel = 100;  //레벨업 필요 경험치
         private int clickIncome = 10000;        //클릭당 수익
@@ -31,6 +33,7 @@ namespace Growing
         private int expbuttoncost = 500;        // 경험치 버튼 비용
 
         private ToolTip jobToolTip = new ToolTip();     //툴팁
+
 
         public Form1()
         {
@@ -166,7 +169,7 @@ namespace Growing
             }
         }
 
-        private void UpdateMoneyLabel()
+        public void UpdateMoneyLabel()
         {
             moneyLBL.Text = $"{money}원";
         }
@@ -326,7 +329,7 @@ namespace Growing
             
             if (md == null || md.IsDisposed)
             {
-                md = new MDLstock();
+                md = new MDLstock(this);
                 md.Owner = this;
                 md.Show();          // 모달리스로 한 번만 띄움
             }

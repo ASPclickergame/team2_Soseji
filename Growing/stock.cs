@@ -8,7 +8,19 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace growing
 {
-    internal class Stock
+    public struct StockEvent
+    {
+        public string Description;
+        public double MinChange;
+        public double MaxChange;
+        public StockEvent(string desc, double min, double max)
+        {
+            Description = desc;
+            MinChange = min;
+            MaxChange = max;
+        }
+    }
+    public class Stock
     {
         public string Name;
         public int Price;
@@ -21,6 +33,43 @@ namespace growing
             Price = price;
             HaveStock = 0;
         }
+
+        private static StockEvent[] events = new StockEvent[]
+        {
+            // ===== 호재 =====
+            new StockEvent("신제품 출시 대성공", 10, 18),
+            new StockEvent("글로벌 시장 진출 확정", 7, 12),
+            new StockEvent("분기 실적 최고치 갱신", 5, 10),
+            new StockEvent("AI 기술 상용화 성공", 8, 14),
+            new StockEvent("정부 보조금 수혜", 4, 8),
+            new StockEvent("해외 투자 대규모 유치", 6, 13),
+            new StockEvent("산업규제 완화", 3, 7),
+            new StockEvent("유명 인사 신규 영입", 2, 6),
+            new StockEvent("특허권 분쟁 승소", 5, 11),
+            new StockEvent("적대적 M&A 방어 성공", 4, 9),
+            new StockEvent("경영진 대규모 자사주 매입", 6, 13),
+            new StockEvent("합작 법인 설립", 3, 8),
+            new StockEvent("배당금 대폭 인상", 5, 10),
+            new StockEvent("공장 증설 완료", 2, 7),
+            new StockEvent("주요지수 편입", 3, 8),
+            // ===== 악재 =====
+            new StockEvent("CEO 스캔들 발생", -16, -10),
+            new StockEvent("안전성 문제로 리콜", -12, -6),
+            new StockEvent("해외 규제 강화", -9, -5),
+            new StockEvent("공장 화재 발생", -18, -12),
+            new StockEvent("기술 유출 의혹", -10, -4),
+            new StockEvent("대통령의 계엄령 선포", -20, -15),
+            new StockEvent("금리 인상", -7, -2),
+            new StockEvent("매출 급감", -13, -7),
+            new StockEvent("주요 인사 이탈", -8, -3),
+            new StockEvent("특허권 분쟁 패소", -9, -4),
+            new StockEvent("노동자 대규모 파업", -12, -6),
+            new StockEvent("원자재 가격 폭등", -10, -5),
+            new StockEvent("배당금 삭감", -8, -2),
+            new StockEvent("공정거래법 위반 적발", -11, -6),
+            new StockEvent("고객 개인정보 유출", -15, -10)
+        };
+
 
         // 구매
         public void BuyStock(int quantity, ref int Pmoney)
@@ -70,41 +119,18 @@ namespace growing
         // 호재 / 악재 랜덤 이벤트 생성
         public void TriggerRandomEvent()
         {
-            string[] goodNews = new string[]
-            {
-                "신제품 출시 대성공",
-                "글로벌 시장 진출 확정",
-                "분기 실적 최고치 갱신",
-                "자동차 AI 기술 상용화 성공",
-                "정부 보조금 수혜"
-            };
+            StockEvent ev = events[rand.Next(events.Length)];
 
-            string[] badNews = new string[]
-            {
-                "CEO 스캔들 발생",
-                "안전성 문제로 리콜",
-                "해외 규제 강화",
-                "공장 화재 발생",
-                "기술 유출 의혹",
-                "대통령의 계엄령 선포"
-            };
-
-            bool isGood = rand.Next(2) == 0;
-            string description;
             double percentChange;
-
-            if (isGood)
-            {
-                description = goodNews[rand.Next(goodNews.Length)];
-                percentChange = rand.Next(3, 16); // +3%~+15%
-            }
+            if (ev.MinChange == ev.MaxChange)
+                percentChange = ev.MinChange;
             else
-            {
-                description = badNews[rand.Next(badNews.Length)];
-                percentChange = -rand.Next(3, 16); // -3%~-15%
-            }
+                percentChange = rand.NextDouble() * (ev.MaxChange - ev.MinChange) + ev.MinChange;
 
-            ApplyEvent(description, percentChange);
+            percentChange = Math.Round(percentChange, 2);
+
+            ApplyEvent(ev.Description, percentChange);
+
 
         }
     }
