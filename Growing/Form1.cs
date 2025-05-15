@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlTypes;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace Growing
 {
     public partial class Form1 : Form
     {
-
+        private DatabaseManager DB;
         private MDLstock md;
         private int money = 0;
         private List<Button> hireButtons;
@@ -35,7 +36,31 @@ namespace Growing
         {
             InitializeComponent();
             updatelevellabel(); //레벨 업데이트
+            SetUpDatabaseManager();
             this.DoubleBuffered = true;//마우스 클릭 입력 속도 가속
+        }
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DB.SavePlayerData(new PlayerData("정보보안의 갓핸드_박요한", money, level));
+        }
+
+        private void SetUpDatabaseManager()
+        {
+            // database set up function
+
+            DB = DatabaseManager.GetInstance();
+
+            if (File.Exists(DB.savePath + "save.csv"))
+            {
+                // 초기화가 됐다면
+                DB.LoadingPlayerData();
+                money = DB.GetMoney();
+                level = DB.GetLevel();
+            }
+            else
+            {
+                // 엄
+            }
         }
 
         // Worker 리스트
@@ -314,24 +339,6 @@ namespace Growing
             {
                 md.BringToFront(); // 이미 열려 있으면 앞으로 가져오기
             }
-        }
-    }
-
-    public class Worker
-    {
-        public string Name { get; set; }
-        public int Cost { get; set; }
-        public int Income { get; set; }
-        public int Interval { get; set; } // ms
-        public bool IsHired { get; set; } = false;
-        public int RequiredLevel { get; set; } // 고용 제한 레벨
-        public Worker(string name, int cost, int income, int interval, int requiredLevel =1)
-        {
-            Name = name;
-            Cost = cost;
-            Income = income;
-            Interval = interval;
-            RequiredLevel = requiredLevel;
         }
     }
 }
