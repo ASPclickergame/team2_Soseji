@@ -23,21 +23,22 @@ namespace Growing
         private Dictionary<Timer, int> timerRemainingTime;
 
         private int level = 1;                  //레벨    
-        private int experience = 0;             //현재 경험치
-        private int experiencenextlevel = 100;  //레벨업 필요 경험치
+        private int exp = 0;             //현재 경험치
+        private int expNextLevel = 100;  //레벨업 필요 경험치
         private int clickIncome = 10000;        //클릭당 수익
 
-        private int expperclick = 20;           // 경험치 상승량 퍼센트
-        private int expbuttoncost = 500;        // 경험치 버튼 비용
+        private int expPerClick = 20;           // 경험치 상승량 퍼센트
+        private int expBTNcost = 500;        // 경험치 버튼 비용
 
         private ToolTip jobToolTip = new ToolTip();     //툴팁
 
         public Form1()
         {
             InitializeComponent();
-            updatelevellabel();              //레벨 업데이트
             SetUpDatabaseManager();
             this.DoubleBuffered = true;     //마우스 클릭 입력 속도 가속
+            UpdateMoneyLabel();
+            UpdateLevelLabel();
 
         }
 
@@ -61,14 +62,6 @@ namespace Growing
             btncheckTMR.Tick += (s, eArgs) => UpdateButtonStates();
             btncheckTMR.Start();
 
-       
-            //gameTMR.Interval = 100;
-            //gameTMR.Tick += (s, eArgs) =>
-            //{
-            //    money += 1;
-            //    UpdateMoneyLabel();
-            //};
-            //gameTMR.Start();
 
             // 각 알바 타이머 -> 알바 매핑
             timerToWorker = new Dictionary<Timer, Worker>
@@ -86,7 +79,7 @@ namespace Growing
                 pair.Key.Interval = pair.Value.Interval;
                 Worker w = pair.Value;
             }
-
+            
             // 타이머 -> 남은 시간 표시할 라벨
             timerToLabel = new Dictionary<Timer, Label>
             {
@@ -126,7 +119,7 @@ namespace Growing
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            DB.SavePlayerData(new PlayerData("정보보안의 갓핸드_박요한", money, level));
+            DB.SavePlayerData(new PlayerData("정보보안의 갓핸드_박요한", money, level, exp, expNextLevel));
         }
 
         private void SetUpDatabaseManager()
@@ -141,6 +134,8 @@ namespace Growing
                 DB.LoadingPlayerData();
                 money = DB.GetMoney();
                 level = DB.GetLevel();
+                exp = DB.GetExp();
+                expNextLevel = DB.GetExpNextLevel();
             }
             else
             {
@@ -150,20 +145,28 @@ namespace Growing
 
         private void HireWorker(Worker worker, Timer tmr)
         {
-            //고용에 필요한 레벨
-            if (level < worker.RequiredLevel)
+            if (worker.IsHired)
             {
-                MessageBox.Show($"이 직업은 레벨 {worker.RequiredLevel} 이상부터 고용할 수 있습니다.");
+                MessageBox.Show($"{worker.Name}은 이미 고용되었습니다.");
                 return;
             }
 
-            if (money >= worker.Cost && !worker.IsHired)
+            if (level < worker.RequiredLevel)
             {
-                money -= worker.Cost;
-                worker.IsHired = true;
-                tmr.Start();
-                UpdateMoneyLabel();
+                MessageBox.Show($"레벨 {worker.RequiredLevel} 이상부터 고용할 수 있습니다.");
+                return;
             }
+
+            if (money < worker.Cost)
+            {
+                MessageBox.Show("돈이 부족합니다.");
+                return;
+            }
+
+            money -= worker.Cost;
+            worker.IsHired = true;
+            tmr.Start();
+            UpdateMoneyLabel();
         }
 
         private void UpdateMoneyLabel()
@@ -178,33 +181,27 @@ namespace Growing
                 Worker w = workers[i];
                 Button btn = hireButtons[i];
 
-                //고용 추가 제한(레벨 제한도 추가)
                 if (level < w.RequiredLevel)
                 {
-                    btn.Enabled = true; 
-                    btn.Text = $"{w.Name} (Lv {w.RequiredLevel}) : 잠김";
+                    btn.Text = $"{w.Name} (Lv {w.RequiredLevel}) : 레벨 부족";
                     btn.BackColor = Color.Gray;
-
-                    btn.Tag = "Locked"; //클릭 안됨
                 }
                 else if (w.IsHired)
                 {
-                    btn.Enabled = false;
                     btn.Text = $"{w.Name}: {w.Interval / 1000}초당 {w.Income:N0}원";
                     btn.BackColor = Color.LightGreen;
                 }
                 else if (money >= w.Cost)
                 {
-                    btn.Enabled = true;
                     btn.Text = $"{w.Name} : {w.Cost:N0}원";
                     btn.BackColor = SystemColors.Control;
                 }
                 else
                 {
-                    btn.Enabled = false;
                     btn.Text = $"{w.Name} : {w.Cost:N0}원";
                     btn.BackColor = Color.LightCoral;
                 }
+
             }
         }
 
@@ -272,47 +269,47 @@ namespace Growing
         }
 
         //레벨 업데이트
-        private void updatelevellabel()
+        private void UpdateLevelLabel()
         {
             levelLBL.Text = $"레벨: {level}";
 
-            double percent = (double)experience / experiencenextlevel * 100;
+            double percent = (double)exp / expNextLevel * 100;
             expLBL.Text = $"경험치: {percent:0.0}%";
 
-            expCostLBL.Text = $"경험치 획득 비용: {expbuttoncost}원";
+            expCostLBL.Text = $"경험치 획득 비용: {expBTNcost}원";
         }
 
         //경험치 획득
-        private void gainexperience(int amount)
+        private void gainExp(int amount)
         {
-            experience += amount;
+            exp += amount;
 
             //경험치 만족
-            if (experience >= experiencenextlevel)
+            if (exp >= expNextLevel)
             {
-                experience -= experiencenextlevel;
+                exp -= expNextLevel;
                 level++;
                 clickIncome += 50;
 
                 // 레벨업 필요 경험치 증가
-                experiencenextlevel = (int)(experiencenextlevel * 1.4);
+                expNextLevel = (int)(expNextLevel * 1.4);
 
                 // 레벨업 버튼 가격 증가
-                expbuttoncost = (int)(expbuttoncost * 1.4);
+                expBTNcost = (int)(expBTNcost * 1.4);
 
                 MessageBox.Show($"레벨 업! 현재 레벨: {level}\n클릭당 수익: {clickIncome}원");
             }
 
-            updatelevellabel();
+            UpdateLevelLabel();
         }
 
         //레벨업 버튼
         private void levelupBTN_Click(object sender, EventArgs e)
         {
-            if (money >= expbuttoncost)
+            if (money >= expBTNcost)
             {
-                money -= expbuttoncost;
-                gainexperience(expperclick);
+                money -= expBTNcost;
+                gainExp(expPerClick);
                 UpdateMoneyLabel();
             }
             else
