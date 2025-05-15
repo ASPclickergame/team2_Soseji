@@ -13,11 +13,14 @@ namespace Growing
     {
         public string name;
         public int money;
+        public int level;
+        
 
-        public PlayerData(string _name, int _money)
+        public PlayerData(string _name, int _money, int _level)
         {
             this.name = _name;
             this.money = _money;
+            this.level = _level;
         }
     }
 
@@ -45,7 +48,7 @@ namespace Growing
 
         public void LoadingPlayerData()
         {
-            playerData = new PlayerData("", 0);
+            playerData = new PlayerData("", 0, 0);
             playerData = LoadPlayerData();
         }
 
@@ -54,7 +57,7 @@ namespace Growing
             // _data파일을 save.csv로 저장
 
             string path = Path.Combine(savePath, "save.csv");
-            string line = $"{_data.name},{_data.money}";
+            string line = $"{_data.name},{_data.money}, {_data.level}";
 
             File.WriteAllText(path, line);
         }
@@ -67,7 +70,7 @@ namespace Growing
             string line = File.ReadAllText(path);
             string[] parts = line.Split(',');
 
-            return new PlayerData(parts[0], int.Parse(parts[1]));
+            return new PlayerData(parts[0], int.Parse(parts[1]), int.Parse(parts[2]));
         }
 
         #region Get
@@ -75,6 +78,11 @@ namespace Growing
         public int GetMoney()
         {
             return playerData.money;
+        }
+
+        public int GetLevel()
+        {
+            return playerData.level;
         }
 
         #endregion

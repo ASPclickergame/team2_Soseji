@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlTypes;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace Growing
 {
     public partial class Form1 : Form
     {
+        private DatabaseManager DB;
         private MDLstock md;
         private int money = 0;
         private List<Button> hireButtons;
@@ -34,6 +36,7 @@ namespace Growing
         {
             InitializeComponent();
             updatelevellabel();              //레벨 업데이트
+            SetUpDatabaseManager();
             this.DoubleBuffered = true;     //마우스 클릭 입력 속도 가속
 
         }
@@ -121,6 +124,30 @@ namespace Growing
             UpdateButtonStates();
         }
 
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DB.SavePlayerData(new PlayerData("정보보안의 갓핸드_박요한", money, level));
+        }
+
+        private void SetUpDatabaseManager()
+        {
+            // database set up function
+
+            DB = DatabaseManager.GetInstance();
+
+            if (File.Exists(DB.savePath + "save.csv"))
+            {
+                // 초기화가 됐다면
+                DB.LoadingPlayerData();
+                money = DB.GetMoney();
+                level = DB.GetLevel();
+            }
+            else
+            {
+                // 엄
+            }
+        }
+
         private void HireWorker(Worker worker, Timer tmr)
         {
             //고용에 필요한 레벨
@@ -180,8 +207,6 @@ namespace Growing
                 }
             }
         }
-
-
 
         private void UpdateRemainingTimes(object sender, EventArgs e)
         {
