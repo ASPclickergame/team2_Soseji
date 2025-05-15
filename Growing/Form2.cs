@@ -25,6 +25,7 @@ namespace Growing
         {
             InitializeComponent();
             mainForm = main;
+            timer1.Start();
         }
 
         private void MDlstock_Load(object sender, EventArgs e)
@@ -100,5 +101,19 @@ namespace Growing
 
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            int idx = rnd.Next(stocks.Count);
+
+            // 해당 종목에 이벤트 발생 (예: 가격 변동)
+            stocks[idx].TriggerRandomEvent();
+
+            // UI 갱신
+            UpdateLabels();
+
+            // 필요시 메인폼 자금도 갱신
+            mainForm.UpdateMoneyLabel();
+        }
     }
 }
