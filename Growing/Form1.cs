@@ -27,7 +27,7 @@ namespace Growing
         public int level = 1;                  //레벨    
         private int experience = 0;             //현재 경험치
         private int experiencenextlevel = 100;  //레벨업 필요 경험치
-        private int clickIncome = 10000;        //클릭당 수익
+        private int clickIncome = 100;        //클릭당 수익
 
         private int expperclick = 20;           // 경험치 상승량 퍼센트
         private int expbuttoncost = 500;        // 경험치 버튼 비용
@@ -288,8 +288,12 @@ namespace Growing
             double percent = (double)experience / experiencenextlevel * 100;
             expLBL.Text = $"경험치: {percent:0.0}%";
 
-            expCostLBL.Text = $"경험치 획득 비용: {expbuttoncost}원";
+            
+
+            // 레벨업 버튼 텍스트 업데이트
+            levelupBTN.Text = $"레벨 업(F)\n{expbuttoncost:N0}원";
         }
+
 
         //경험치 획득
         private void gainexperience(int amount)
@@ -301,7 +305,8 @@ namespace Growing
             {
                 experience -= experiencenextlevel;
                 level++;
-                clickIncome += 50;
+                clickIncome = (int)(clickIncome * 1.5);
+
 
                 // 레벨업 필요 경험치 증가
                 experiencenextlevel = (int)(experiencenextlevel * 1.4);

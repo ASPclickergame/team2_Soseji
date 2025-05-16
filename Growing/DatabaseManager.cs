@@ -15,7 +15,7 @@ namespace Growing
         public int level; 
         public int exp = 0;             //현재 경험치
         public int expNextLevel = 100;  //레벨업 필요 경험치
-        public int clickIncome = 10000;        //클릭당 수익
+        public int clickIncome = 100;        //클릭당 수익
         public int expPerClick = 20;           // 경험치 상승량 퍼센트
 
         public List<Worker> workers = new List<Worker>();

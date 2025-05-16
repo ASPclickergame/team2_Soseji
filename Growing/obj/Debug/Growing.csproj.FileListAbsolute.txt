@@ -52,3 +52,14 @@ C:\Users\user\Source\Repos\ASPclickergame\team2_Soseji\Growing\obj\Debug\Growing
 C:\Users\user\Source\Repos\ASPclickergame\team2_Soseji\Growing\obj\Debug\Growing.csproj.CoreCompileInputs.cache
 C:\Users\user\Source\Repos\ASPclickergame\team2_Soseji\Growing\obj\Debug\Growing.exe
 C:\Users\user\Source\Repos\ASPclickergame\team2_Soseji\Growing\obj\Debug\Growing.pdb
+C:\Users\이호준\OneDrive - 광운대학교\바탕 화면\eungsosil2\Growing\bin\Debug\Growing.exe.config
+C:\Users\이호준\OneDrive - 광운대학교\바탕 화면\eungsosil2\Growing\bin\Debug\Growing.exe
+C:\Users\이호준\OneDrive - 광운대학교\바탕 화면\eungsosil2\Growing\bin\Debug\Growing.pdb
+C:\Users\이호준\OneDrive - 광운대학교\바탕 화면\eungsosil2\Growing\obj\Debug\Growing.csproj.AssemblyReference.cache
+C:\Users\이호준\OneDrive - 광운대학교\바탕 화면\eungsosil2\Growing\obj\Debug\Growing.Form1.resources
+C:\Users\이호준\OneDrive - 광운대학교\바탕 화면\eungsosil2\Growing\obj\Debug\Growing.MDLstock.resources
+C:\Users\이호준\OneDrive - 광운대학교\바탕 화면\eungsosil2\Growing\obj\Debug\Growing.Properties.Resources.resources
+C:\Users\이호준\OneDrive - 광운대학교\바탕 화면\eungsosil2\Growing\obj\Debug\Growing.csproj.GenerateResource.cache
+C:\Users\이호준\OneDrive - 광운대학교\바탕 화면\eungsosil2\Growing\obj\Debug\Growing.csproj.CoreCompileInputs.cache
+C:\Users\이호준\OneDrive - 광운대학교\바탕 화면\eungsosil2\Growing\obj\Debug\Growing.exe
+C:\Users\이호준\OneDrive - 광운대학교\바탕 화면\eungsosil2\Growing\obj\Debug\Growing.pdb
