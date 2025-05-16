@@ -1,4 +1,5 @@
-﻿using System;
+﻿using growing;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,30 +17,32 @@ namespace Growing
     {
         private DatabaseManager DB;
         private MDLstock md;
-        private int money = 0;
+        public int money = 0;
         private List<Button> hireButtons;
+        public List<Stock> Lstock;
         private Dictionary<Timer, Worker> timerToWorker;
         private Dictionary<Timer, Label> timerToLabel;
         private Dictionary<Timer, int> timerRemainingTime;
 
-        private int level = 1;                  //레벨    
-        private int exp = 0;             //현재 경험치
-        private int expNextLevel = 100;  //레벨업 필요 경험치
-        private int clickIncome = 10000;        //클릭당 수익
+        public int level = 1;                  //레벨    
+        private int experience = 0;             //현재 경험치
+        private int experiencenextlevel = 100;  //레벨업 필요 경험치
+        private int clickIncome = 100;        //클릭당 수익
 
-        private int expPerClick = 20;           // 경험치 상승량 퍼센트
-        private int expBTNcost = 500;        // 경험치 버튼 비용
+        private int expperclick = 20;           // 경험치 상승량 퍼센트
+        private int expbuttoncost = 500;        // 경험치 버튼 비용
 
         private ToolTip jobToolTip = new ToolTip();     //툴팁
+
 
         public Form1()
         {
             InitializeComponent();
+
             SetUpDatabaseManager();
             this.DoubleBuffered = true;     //마우스 클릭 입력 속도 가속
             UpdateMoneyLabel();
             UpdateLevelLabel();
-
         }
 
         // Worker 리스트
@@ -63,6 +66,14 @@ namespace Growing
             btncheckTMR.Start();
 
 
+            //gameTMR.Interval = 100;
+            //gameTMR.Tick += (s, eArgs) =>
+            //{
+            //    money += 1;
+            //    UpdateMoneyLabel();
+            //};
+            //gameTMR.Start();
+
             // 각 알바 타이머 -> 알바 매핑
             timerToWorker = new Dictionary<Timer, Worker>
             {
@@ -79,7 +90,7 @@ namespace Growing
                 pair.Key.Interval = pair.Value.Interval;
                 Worker w = pair.Value;
             }
-            
+
             // 타이머 -> 남은 시간 표시할 라벨
             timerToLabel = new Dictionary<Timer, Label>
             {
@@ -119,7 +130,9 @@ namespace Growing
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            DB.SavePlayerData(new PlayerData("정보보안의 갓핸드_박요한", money, level, exp, expNextLevel));
+            PlayerData playerData = new PlayerData("정보보안의 갓핸드_박요한", money, level, experience, experiencenextlevel, clickIncome, expperclick);
+            playerData.SetWorkers(workers);
+            DB.SavePlayerData(playerData);
         }
 
         private void SetUpDatabaseManager()
@@ -134,8 +147,10 @@ namespace Growing
                 DB.LoadingPlayerData();
                 money = DB.GetMoney();
                 level = DB.GetLevel();
-                exp = DB.GetExp();
-                expNextLevel = DB.GetExpNextLevel();
+                experience = DB.GetExp();
+                experiencenextlevel = DB.GetExpNextLevel();
+                clickIncome = DB.GetClickIncome();
+                expperclick = DB.GetExpPerClick();
             }
             else
             {
@@ -145,31 +160,23 @@ namespace Growing
 
         private void HireWorker(Worker worker, Timer tmr)
         {
-            if (worker.IsHired)
-            {
-                MessageBox.Show($"{worker.Name}은 이미 고용되었습니다.");
-                return;
-            }
-
+            //고용에 필요한 레벨
             if (level < worker.RequiredLevel)
             {
-                MessageBox.Show($"레벨 {worker.RequiredLevel} 이상부터 고용할 수 있습니다.");
+                MessageBox.Show($"이 직업은 레벨 {worker.RequiredLevel} 이상부터 고용할 수 있습니다.");
                 return;
             }
 
-            if (money < worker.Cost)
+            if (money >= worker.Cost && !worker.IsHired)
             {
-                MessageBox.Show("돈이 부족합니다.");
-                return;
+                money -= worker.Cost;
+                worker.IsHired = true;
+                tmr.Start();
+                UpdateMoneyLabel();
             }
-
-            money -= worker.Cost;
-            worker.IsHired = true;
-            tmr.Start();
-            UpdateMoneyLabel();
         }
 
-        private void UpdateMoneyLabel()
+        public void UpdateMoneyLabel()
         {
             moneyLBL.Text = $"{money}원";
         }
@@ -181,27 +188,33 @@ namespace Growing
                 Worker w = workers[i];
                 Button btn = hireButtons[i];
 
+                //고용 추가 제한(레벨 제한도 추가)
                 if (level < w.RequiredLevel)
                 {
-                    btn.Text = $"{w.Name} (Lv {w.RequiredLevel}) : 레벨 부족";
+                    btn.Enabled = true;
+                    btn.Text = $"{w.Name} (Lv {w.RequiredLevel}) : 잠김";
                     btn.BackColor = Color.Gray;
+
+                    btn.Tag = "Locked"; //클릭 안됨
                 }
                 else if (w.IsHired)
                 {
+                    btn.Enabled = false;
                     btn.Text = $"{w.Name}: {w.Interval / 1000}초당 {w.Income:N0}원";
                     btn.BackColor = Color.LightGreen;
                 }
                 else if (money >= w.Cost)
                 {
+                    btn.Enabled = true;
                     btn.Text = $"{w.Name} : {w.Cost:N0}원";
                     btn.BackColor = SystemColors.Control;
                 }
                 else
                 {
+                    btn.Enabled = false;
                     btn.Text = $"{w.Name} : {w.Cost:N0}원";
                     btn.BackColor = Color.LightCoral;
                 }
-
             }
         }
 
@@ -273,29 +286,34 @@ namespace Growing
         {
             levelLBL.Text = $"레벨: {level}";
 
-            double percent = (double)exp / expNextLevel * 100;
+            double percent = (double)experience / experiencenextlevel * 100;
             expLBL.Text = $"경험치: {percent:0.0}%";
 
-            expCostLBL.Text = $"경험치 획득 비용: {expBTNcost}원";
+
+
+            // 레벨업 버튼 텍스트 업데이트
+            levelupBTN.Text = $"레벨 업(F)\n{expbuttoncost:N0}원";
         }
 
+
         //경험치 획득
-        private void gainExp(int amount)
+        private void gainexperience(int amount)
         {
-            exp += amount;
+            experience += amount;
 
             //경험치 만족
-            if (exp >= expNextLevel)
+            if (experience >= experiencenextlevel)
             {
-                exp -= expNextLevel;
+                experience -= experiencenextlevel;
                 level++;
-                clickIncome += 50;
+                clickIncome = (int)(clickIncome * 1.5);
+
 
                 // 레벨업 필요 경험치 증가
-                expNextLevel = (int)(expNextLevel * 1.4);
+                experiencenextlevel = (int)(experiencenextlevel * 1.4);
 
                 // 레벨업 버튼 가격 증가
-                expBTNcost = (int)(expBTNcost * 1.4);
+                expbuttoncost = (int)(expbuttoncost * 1.4);
 
                 MessageBox.Show($"레벨 업! 현재 레벨: {level}\n클릭당 수익: {clickIncome}원");
             }
@@ -306,10 +324,10 @@ namespace Growing
         //레벨업 버튼
         private void levelupBTN_Click(object sender, EventArgs e)
         {
-            if (money >= expBTNcost)
+            if (money >= expbuttoncost)
             {
-                money -= expBTNcost;
-                gainExp(expPerClick);
+                money -= expbuttoncost;
+                gainexperience(expperclick);
                 UpdateMoneyLabel();
             }
             else
@@ -320,10 +338,10 @@ namespace Growing
 
         private void jusikBtn_Click(object sender, EventArgs e)
         {
-            
+
             if (md == null || md.IsDisposed)
             {
-                md = new MDLstock();
+                md = new MDLstock(this);
                 md.Owner = this;
                 md.Show();          // 모달리스로 한 번만 띄움
             }
@@ -338,24 +356,6 @@ namespace Growing
             {
                 levelupBTN.PerformClick();
             }
-        }
-    }
-
-    public class Worker
-    {
-        public string Name { get; set; }
-        public int Cost { get; set; }
-        public int Income { get; set; }
-        public int Interval { get; set; } // ms
-        public bool IsHired { get; set; } = false;
-        public int RequiredLevel { get; set; } // 고용 제한 레벨
-        public Worker(string name, int cost, int income, int interval, int requiredLevel =1)
-        {
-            Name = name;
-            Cost = cost;
-            Income = income;
-            Interval = interval;
-            RequiredLevel = requiredLevel;
         }
     }
 }
