@@ -129,7 +129,9 @@ namespace Growing
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            DB.SavePlayerData(new PlayerData("정보보안의 갓핸드_박요한", money, level));
+            PlayerData playerData = new PlayerData("정보보안의 갓핸드_박요한", money, level, experience, experiencenextlevel, clickIncome, expperclick);
+            playerData.SetWorkers(workers);
+            DB.SavePlayerData(playerData);
         }
 
         private void SetUpDatabaseManager()
@@ -144,6 +146,10 @@ namespace Growing
                 DB.LoadingPlayerData();
                 money = DB.GetMoney();
                 level = DB.GetLevel();
+                experience = DB.GetExp();
+                experiencenextlevel = DB.GetExpNextLevel();
+                clickIncome = DB.GetClickIncome();
+                expperclick = DB.GetExpPerClick();
             }
             else
             {
@@ -344,24 +350,6 @@ namespace Growing
             {
                 levelupBTN.PerformClick();
             }
-        }
-    }
-
-    public class Worker
-    {
-        public string Name { get; set; }
-        public int Cost { get; set; }
-        public int Income { get; set; }
-        public int Interval { get; set; } // ms
-        public bool IsHired { get; set; } = false;
-        public int RequiredLevel { get; set; } // 고용 제한 레벨
-        public Worker(string name, int cost, int income, int interval, int requiredLevel =1)
-        {
-            Name = name;
-            Cost = cost;
-            Income = income;
-            Interval = interval;
-            RequiredLevel = requiredLevel;
         }
     }
 }
