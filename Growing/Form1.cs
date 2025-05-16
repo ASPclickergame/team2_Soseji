@@ -38,10 +38,11 @@ namespace Growing
         public Form1()
         {
             InitializeComponent();
-            updatelevellabel();              //레벨 업데이트
+            
             SetUpDatabaseManager();
             this.DoubleBuffered = true;     //마우스 클릭 입력 속도 가속
-
+            UpdateMoneyLabel();
+            UpdateLevelLabel();
         }
 
         // Worker 리스트
@@ -281,7 +282,7 @@ namespace Growing
         }
 
         //레벨 업데이트
-        private void updatelevellabel()
+        private void UpdateLevelLabel()
         {
             levelLBL.Text = $"레벨: {level}";
 
@@ -317,7 +318,7 @@ namespace Growing
                 MessageBox.Show($"레벨 업! 현재 레벨: {level}\n클릭당 수익: {clickIncome}원");
             }
 
-            updatelevellabel();
+            UpdateLevelLabel();
         }
 
         //레벨업 버튼
