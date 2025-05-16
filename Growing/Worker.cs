@@ -14,7 +14,7 @@ namespace Growing
         public int Interval { get; set; } // ms
         public bool IsHired { get; set; } = false;
         public int RequiredLevel { get; set; } // 고용 제한 레벨
-        public Worker(string name, int cost, int income, int interval, int requiredLevel = 1)
+        public Worker(string name, int cost, int income, int interval, int requiredLevel)
         {
             Name = name;
             Cost = cost;
