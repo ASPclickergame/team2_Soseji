@@ -32,9 +32,6 @@ namespace Growing
         private int expperclick = 20;           // 경험치 상승량 퍼센트
         private int expbuttoncost = 500;        // 경험치 버튼 비용
 
-        private ToolTip jobToolTip = new ToolTip();     //툴팁
-
-
         public Form1()
         {
             InitializeComponent();
@@ -64,15 +61,6 @@ namespace Growing
             btncheckTMR.Interval = 100;
             btncheckTMR.Tick += (s, eArgs) => UpdateButtonStates();
             btncheckTMR.Start();
-
-
-            //gameTMR.Interval = 100;
-            //gameTMR.Tick += (s, eArgs) =>
-            //{
-            //    money += 1;
-            //    UpdateMoneyLabel();
-            //};
-            //gameTMR.Start();
 
             // 각 알바 타이머 -> 알바 매핑
             timerToWorker = new Dictionary<Timer, Worker>
@@ -111,19 +99,6 @@ namespace Growing
             updateCountdownTMR.Interval = 100; // 0.1초 간격으로 정밀하게 표시
             updateCountdownTMR.Tick += UpdateRemainingTimes;
             updateCountdownTMR.Start();
-
-            jobToolTip.InitialDelay = 0; // 마우스를 올리면 툴팁 바로 표시
-            jobToolTip.ReshowDelay = 0; // 지연 없이 툴팁 표시 
-            jobToolTip.ShowAlways = true; // 컨트롤이 false여도 표시
-
-            for (int i = 0; i < workers.Count; i++)
-            {
-                Worker w = workers[i];
-                Button btn = hireButtons[i];
-
-                string tooltipText = $"Lv {w.RequiredLevel} 필요 - 클릭하여 고용"; //버튼 위에 마우스 올라가면 툴팁 표시
-                jobToolTip.SetToolTip(btn, tooltipText);
-            }
 
             UpdateButtonStates();
         }
