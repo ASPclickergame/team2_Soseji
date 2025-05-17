@@ -145,7 +145,7 @@ namespace Growing
                 MessageBox.Show($"이 알바는 레벨 {worker.RequiredLevel} 이상부터 고용할 수 있습니다.");
                 return;
             }
-            else if (money < worker.Cost)
+            if (money < worker.Cost)
             {
                 MessageBox.Show($"돈이 부족합니다.");
                 return;
