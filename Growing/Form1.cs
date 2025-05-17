@@ -135,10 +135,19 @@ namespace Growing
 
         private void HireWorker(Worker worker, Timer tmr)
         {
-            //고용에 필요한 레벨
+            if (worker.IsHired)
+            {
+                MessageBox.Show($"이미 고용되었습니다.");
+                return;
+            }
             if (level < worker.RequiredLevel)
             {
-                MessageBox.Show($"이 직업은 레벨 {worker.RequiredLevel} 이상부터 고용할 수 있습니다.");
+                MessageBox.Show($"이 알바는 레벨 {worker.RequiredLevel} 이상부터 고용할 수 있습니다.");
+                return;
+            }
+            else if (money < worker.Cost)
+            {
+                MessageBox.Show($"돈이 부족합니다.");
                 return;
             }
 
@@ -163,30 +172,23 @@ namespace Growing
                 Worker w = workers[i];
                 Button btn = hireButtons[i];
 
-                //고용 추가 제한(레벨 제한도 추가)
                 if (level < w.RequiredLevel)
                 {
-                    btn.Enabled = true;
                     btn.Text = $"{w.Name} (Lv {w.RequiredLevel}) : 잠김";
                     btn.BackColor = Color.Gray;
-
-                    btn.Tag = "Locked"; //클릭 안됨
                 }
                 else if (w.IsHired)
                 {
-                    btn.Enabled = false;
                     btn.Text = $"{w.Name}: {w.Interval / 1000}초당 {w.Income:N0}원";
                     btn.BackColor = Color.LightGreen;
                 }
                 else if (money >= w.Cost)
                 {
-                    btn.Enabled = true;
                     btn.Text = $"{w.Name} : {w.Cost:N0}원";
                     btn.BackColor = SystemColors.Control;
                 }
                 else
                 {
-                    btn.Enabled = false;
                     btn.Text = $"{w.Name} : {w.Cost:N0}원";
                     btn.BackColor = Color.LightCoral;
                 }
