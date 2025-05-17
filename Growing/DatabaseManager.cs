@@ -17,10 +17,10 @@ namespace Growing
         public int expNextLevel = 100;  //레벨업 필요 경험치
         public int clickIncome = 100;        //클릭당 수익
         public int expPerClick = 20;           // 경험치 상승량 퍼센트
-
+        public int expButtonCost = 500;     // 경험치 버튼 비용
         public List<Worker> workers = new List<Worker>();
 
-        public PlayerData(string _name, int _money, int _level, int _exp, int _expNextLevel, int _clickIncome, int _expPerClick)
+        public PlayerData(string _name, int _money, int _level, int _exp, int _expNextLevel, int _clickIncome, int _expPerClick, int _expButtonCost)
         {
             this.name = _name;
             this.money = _money;
@@ -29,7 +29,9 @@ namespace Growing
             this.expNextLevel = _expNextLevel;
             this.clickIncome = _clickIncome;
             this.expPerClick = _expPerClick;
+            this.expButtonCost = _expButtonCost;
         }
+
 
         public void SetWorkers(List<Worker> _workers)
         {
@@ -62,7 +64,7 @@ namespace Growing
 
         public void LoadingPlayerData()
         {
-            playerData = new PlayerData("", 0, 0, 0, 0, 0, 0);
+            playerData = new PlayerData("", 0, 0, 0, 0, 0, 0, 0);
             playerData = LoadPlayerData();
         }
 
@@ -74,7 +76,7 @@ namespace Growing
 
             // Player 정보
             lines.Add("[Player]");
-            lines.Add($"{_data.name},{_data.money},{_data.level},{_data.exp},{_data.expNextLevel},{_data.clickIncome},{_data.expPerClick}");
+            lines.Add($"{_data.name},{_data.money},{_data.level},{_data.exp},{_data.expNextLevel},{_data.clickIncome},{_data.expPerClick},{_data.expButtonCost}");
 
             // Worker 정보
             lines.Add("[Workers]");
@@ -113,7 +115,7 @@ namespace Growing
                     case "[Player]":
                         {
                             string[] parts = line.Split(',');
-                            if (parts.Length >= 7)
+                            if (parts.Length >= 8)
                             {
                                 string name = parts[0];
                                 int money = int.Parse(parts[1]);
@@ -122,8 +124,9 @@ namespace Growing
                                 int expNextLevel = int.Parse(parts[4]);
                                 int clickIncome = int.Parse(parts[5]);
                                 int expPerClick = int.Parse(parts[6]);
+                                int expButtonCost = int.Parse(parts[7]);
 
-                                data = new PlayerData(name, money, level, exp, expNextLevel, clickIncome, expPerClick);
+                                data = new PlayerData(name, money, level, exp, expNextLevel, clickIncome, expPerClick, expButtonCost);
                             }
                             break;
                         }
@@ -193,6 +196,11 @@ namespace Growing
         public int GetExpPerClick()
         {
             return playerData.expPerClick;
+        }
+
+        public int GetExpButtonCost() 
+        { 
+            return playerData.expButtonCost; 
         }
 
         #endregion

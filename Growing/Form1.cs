@@ -105,7 +105,7 @@ namespace Growing
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            PlayerData playerData = new PlayerData("정보보안의 갓핸드_박요한", money, level, experience, experiencenextlevel, clickIncome, expperclick);
+            PlayerData playerData = new PlayerData("정보보안의 갓핸드_박요한", money, level, experience, experiencenextlevel, clickIncome, expperclick, expbuttoncost);
             playerData.SetWorkers(workers);
             DB.SavePlayerData(playerData);
         }
@@ -126,6 +126,7 @@ namespace Growing
                 experiencenextlevel = DB.GetExpNextLevel();
                 clickIncome = DB.GetClickIncome();
                 expperclick = DB.GetExpPerClick();
+                expbuttoncost = DB.GetExpButtonCost();
             }
             else
             {
