@@ -35,11 +35,6 @@ namespace Growing
         public Form1()
         {
             InitializeComponent();
-
-            SetUpDatabaseManager();
-            this.DoubleBuffered = true;     //마우스 클릭 입력 속도 가속
-            UpdateMoneyLabel();
-            UpdateLevelLabel();
         }
 
         // Worker 리스트
@@ -54,52 +49,21 @@ namespace Growing
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // 버튼 순서 일치
             hireButtons = new List<Button> { firstJobBTN, secondJobBTN, thirdJobBTN, forthJobBTN, fifthJobBTN };
 
-            // 버튼 상태 0.1초마다 체크
+            SetUpDatabaseManager();
+            SetupTimerDictionaries();
+
             btncheckTMR.Interval = 100;
             btncheckTMR.Tick += (s, eArgs) => UpdateButtonStates();
             btncheckTMR.Start();
 
-            // 각 알바 타이머 -> 알바 매핑
-            timerToWorker = new Dictionary<Timer, Worker>
-            {
-                { firstJobTMR, workers[0] },
-                { secondJobTMR, workers[1] },
-                { thirdJobTMR, workers[2] },
-                { forthJobTMR, workers[3] },
-                { fifthJobTMR, workers[4] }
-            };
-
-            // 타이머마다 Tick 이벤트 설정
-            foreach (var pair in timerToWorker)
-            {
-                pair.Key.Interval = pair.Value.Interval;
-                Worker w = pair.Value;
-            }
-
-            // 타이머 -> 남은 시간 표시할 라벨
-            timerToLabel = new Dictionary<Timer, Label>
-            {
-                { firstJobTMR, firstJobTimerLBL },
-                { secondJobTMR, secondJobTimerLBL },
-                { thirdJobTMR, thirdJobTimerLBL },
-                { forthJobTMR, forthJobTimerLBL },
-                { fifthJobTMR, fifthJobTimerLBL }
-            };
-
-            // 타이머 -> 남은 시간 (ms)
-            timerRemainingTime = new Dictionary<Timer, int>();
-            foreach (var pair in timerToWorker)
-            {
-                timerRemainingTime[pair.Key] = pair.Value.Interval;
-            }
-
-            updateCountdownTMR.Interval = 100; // 0.1초 간격으로 정밀하게 표시
+            updateCountdownTMR.Interval = 100;
             updateCountdownTMR.Tick += UpdateRemainingTimes;
             updateCountdownTMR.Start();
 
+            UpdateMoneyLabel();
+            UpdateLevelLabel();
             UpdateButtonStates();
         }
 
@@ -112,13 +76,11 @@ namespace Growing
 
         private void SetUpDatabaseManager()
         {
-            // database set up function
 
             DB = DatabaseManager.GetInstance();
 
             if (File.Exists(DB.savePath + "save.csv"))
             {
-                // 초기화가 됐다면
                 DB.LoadingPlayerData();
                 money = DB.GetMoney();
                 level = DB.GetLevel();
@@ -127,10 +89,39 @@ namespace Growing
                 clickIncome = DB.GetClickIncome();
                 expperclick = DB.GetExpPerClick();
                 expbuttoncost = DB.GetExpButtonCost();
+
+                workers = DB.LoadPlayerData().workers;
             }
-            else
+        }
+        private void SetupTimerDictionaries()
+        {
+            timerToWorker = new Dictionary<Timer, Worker>   {
+                { firstJobTMR, workers[0] },
+                { secondJobTMR, workers[1] },
+                { thirdJobTMR, workers[2] },
+                { forthJobTMR, workers[3] },
+                { fifthJobTMR, workers[4] }
+            };
+
+            timerToLabel = new Dictionary<Timer, Label>     {
+                { firstJobTMR, firstJobTimerLBL },
+                { secondJobTMR, secondJobTimerLBL },
+                { thirdJobTMR, thirdJobTimerLBL },
+                { forthJobTMR, forthJobTimerLBL },
+                { fifthJobTMR, fifthJobTimerLBL }
+            };
+
+            timerRemainingTime = new Dictionary<Timer, int>();
+
+            foreach (var pair in timerToWorker)
             {
-                // 엄
+                timerRemainingTime[pair.Key] = pair.Value.Interval;
+
+                if (pair.Value.IsHired)
+                {
+                    pair.Key.Interval = pair.Value.Interval;
+                    pair.Key.Start();
+                }
             }
         }
 
