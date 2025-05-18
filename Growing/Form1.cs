@@ -24,12 +24,17 @@ namespace Growing
         private Dictionary<Timer, Label> timerToLabel;
         private Dictionary<Timer, int> timerRemainingTime;
 
+        #region save 필요한 데이터 변수들
+
         public int level = 1;                  //레벨    
         private int experience = 0;             //현재 경험치
         private int experiencenextlevel = 100;  //레벨업 필요 경험치
         private int clickIncome = 100;        //클릭당 수익
 
         private int expperclick = 20;           // 경험치 상승량 퍼센트
+
+        #endregion
+
         private int expbuttoncost = 500;        // 경험치 버튼 비용
 
         public Form1()

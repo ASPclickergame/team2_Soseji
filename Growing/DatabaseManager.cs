@@ -203,6 +203,11 @@ namespace Growing
             return playerData.expButtonCost; 
         }
 
+        public List<Worker> GetWorkers()
+        {
+            return playerData.workers;
+        }
+
         #endregion
 
         #region Set
