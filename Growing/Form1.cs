@@ -217,8 +217,6 @@ namespace Growing
             }
         }
 
-
-
         private void firstJobBTN_Click(object sender, EventArgs e)
         {
             HireWorker(workers[0], firstJobTMR);
