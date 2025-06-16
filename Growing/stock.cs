@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Growing;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace growing
@@ -13,11 +14,13 @@ namespace growing
         public string Description;
         public double MinChange;
         public double MaxChange;
+       
         public StockEvent(string desc, double min, double max)
         {
             Description = desc;
             MinChange = min;
             MaxChange = max;
+            
         }
     }
     public class Stock
@@ -26,12 +29,14 @@ namespace growing
         public int Price;
         public int HaveStock;
         private static Random rand = new Random();
+        public MDLstock Parentform;
         // 생성자
-        public Stock(string name, int price)
+        public Stock(string name, int price,MDLstock form)
         {
             Name = name;
             Price = price;
             HaveStock = 0;
+            Parentform = form;
         }
 
         private static StockEvent[] events = new StockEvent[]
@@ -51,6 +56,14 @@ namespace growing
             new StockEvent("합작 법인 설립", 3, 8),
             new StockEvent("배당금 대폭 인상", 5, 10),
             new StockEvent("공장 증설 완료", 2, 7),
+            new StockEvent("주요지수 편입", 3, 8),
+            new StockEvent("글로벌 시장 진출 확정", 7, 12),
+            new StockEvent("AI 기술 상용화 성공", 8, 14),
+            new StockEvent("해외 투자 대규모 유치", 6, 13),
+            new StockEvent("경영진 대규모 자사주 매입", 6, 13),
+            new StockEvent("분기 실적 최고치 갱신", 5, 10),
+            new StockEvent("특허권 분쟁 승소", 5, 11),
+            new StockEvent("배당금 대폭 인상", 5, 10),
             new StockEvent("주요지수 편입", 3, 8),
             // ===== 악재 =====
             new StockEvent("CEO 스캔들 발생", -16, -10),
@@ -112,8 +125,13 @@ namespace growing
 
             Price = newPrice;
 
-            MessageBox.Show($"{Name} 주식에 이벤트 발생: {description}\n" +
-                            $"가격이 {percentChange:+0.##;-0.##}% 변동되어 현재 가격: {Price}원");
+            string newsText = ($"{Name} 주식에 이벤트 발생: {description}\n" +
+            $"가격이 {percentChange:+0.##;-0.##}% 변동되어 현재 가격: {Price}원");
+
+
+
+            Parentform.ShowNews(newsText);
+            
         }
 
         // 호재 / 악재 랜덤 이벤트 생성

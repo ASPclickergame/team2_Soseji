@@ -21,6 +21,12 @@ namespace Growing
         public List<Label> labelsHave = new List<Label>();
         public List<Button> buttons = new List<Button>();
         public int selectedIdx = 0;
+
+        public List<List<int>> priceHistories = new List<List<int>>();
+        public const int maxHistory = 50; // 차트에 보여줄 최대 구간
+        public string[] stockNames = { "광운전자", "광운중공업", "광운자동차", "광운소프트" };
+        public Color[] stockColors = { Color.Blue, Color.Red, Color.Green, Color.Orange };
+
         public MDLstock(Form1 main)
         {
             InitializeComponent();
@@ -30,13 +36,20 @@ namespace Growing
 
         private void MDlstock_Load(object sender, EventArgs e)
         {
-            stocks.Add(new Stock("광운전자", 100000));
-            stocks.Add(new Stock("광운중공업", 85000));
-            stocks.Add(new Stock("광운자동차", 75000));
-            stocks.Add(new Stock("광운소프트", 95000));
+            stocks.Add(new Stock("광운전자", 1000,this));
+            stocks.Add(new Stock("광운중공업", 500,this));
+            stocks.Add(new Stock("광운자동차", 5000, this));
+            stocks.Add(new Stock("광운소프트", 2000, this));
+
+            priceHistories.Clear();
+            for (int i = 0; i < stocks.Count; i++)
+                priceHistories.Add(new List<int>());
+            UpdateChart();
 
             initializeLabels();
             UpdateLabels();
+
+            
         }
 
         public void initializeLabels()
@@ -67,14 +80,32 @@ namespace Growing
 
         private void buyBtn_Click(object sender, EventArgs e)
         {
-            stocks[selectedIdx].BuyStock(1, ref mainForm.money);
+            int count = 1;
+            if (txt_개수.Text != "")
+            {
+                count = Convert.ToInt32(txt_개수.Text);
+            }
+            else
+            {
+                count = 1;
+            }
+            stocks[selectedIdx].BuyStock(count, ref mainForm.money);
             UpdateLabels();
             mainForm.UpdateMoneyLabel(); // 메인폼 라벨도 즉시 갱신
         }
 
         private void sellBtn_Click(object sender, EventArgs e)
         {
-            stocks[selectedIdx].SellStock(1, ref mainForm.money);
+            int count = 1;
+            if (txt_개수.Text != "")
+            {
+                count = Convert.ToInt32(txt_개수.Text);
+            }
+            else
+            {
+                count = 1;
+            }
+            stocks[selectedIdx].SellStock(count, ref mainForm.money);
             UpdateLabels();
             mainForm.UpdateMoneyLabel();
         }
@@ -109,11 +140,77 @@ namespace Growing
             // 해당 종목에 이벤트 발생 (예: 가격 변동)
             stocks[idx].TriggerRandomEvent();
 
+
+            for (int i = 0; i < stocks.Count; i++)
+            {
+                priceHistories[i].Add(stocks[i].Price);
+                if (priceHistories[i].Count > maxHistory)
+                    priceHistories[i].RemoveAt(0);
+            }
+            UpdateChart();
+
             // UI 갱신
             UpdateLabels();
 
             // 필요시 메인폼 자금도 갱신
             mainForm.UpdateMoneyLabel();
+        }
+        public void UpdateChart()
+        {
+            chartPrice.Series.Clear();
+
+            int seriesCount = Math.Min(stocks.Count, priceHistories.Count);
+
+            int yMin = int.MaxValue, yMax = int.MinValue;
+
+            for (int i = 0; i < seriesCount; i++)
+            {
+                var series = new System.Windows.Forms.DataVisualization.Charting.Series(stockNames[i]);
+                series.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                series.Color = stockColors[i];
+                series.BorderWidth = 2;
+
+                for (int j = 0; j < priceHistories[i].Count; j++)
+                {
+                    int price = priceHistories[i][j];
+                    series.Points.AddXY(j, price);
+                    if (price < yMin) yMin = price;
+                    if (price > yMax) yMax = price;
+                }
+                chartPrice.Series.Add(series);
+            }
+
+            // 축 자동 스케일링
+            if (yMin != int.MaxValue && yMax != int.MinValue)
+            {
+                chartPrice.ChartAreas[0].AxisY.Minimum = Math.Max(0, yMin - 100);
+                chartPrice.ChartAreas[0].AxisY.Maximum = yMax + 100;
+            }
+        }
+
+        public void ShowNews(string news)
+        {
+            newsBox.AppendText(news + Environment.NewLine);
+            newsBox.ScrollToCaret();
+        }
+        private void txt_개수_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void stockNum4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void stockNum3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -305,7 +305,7 @@ namespace Growing
             else
             {
                 MessageBox.Show("돈이 부족합니다!");
-            }
+            } 
         }
 
         private void jusikBtn_Click(object sender, EventArgs e)
