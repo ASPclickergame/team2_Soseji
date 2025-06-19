@@ -268,7 +268,7 @@ namespace Growing
 
         private void clickPNL_Click(object sender, EventArgs e)
         {
-            money += clickIncome * 100000000;
+            money += clickIncome;
             UpdateMoneyLabel();
         }
 
