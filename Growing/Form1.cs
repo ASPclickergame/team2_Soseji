@@ -212,6 +212,7 @@ namespace Growing
                     // 수익 지급
                     money += worker.Income;
                     UpdateMoneyLabel();
+                    LoadImage("beggar_smile");
 
                     // 타이머 초기화
                     timerRemainingTime[tmr] = worker.Interval;
@@ -322,11 +323,27 @@ namespace Growing
                 md.BringToFront(); // 이미 열려 있으면 앞으로 가져오기
             }
         }
+
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F)
             {
                 levelupBTN.PerformClick();
+            }
+        }
+
+        private void LoadImage(string _imageName)
+        {
+            string projectRoot = Directory.GetParent(Application.StartupPath).Parent.FullName;
+            string imagePath = Path.Combine(projectRoot, "Resources", _imageName + ".png");
+            if (File.Exists(imagePath))
+            {
+                pictureBox1.Image = Image.FromFile(imagePath);
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage; // 이미지 크기 조절
+            }
+            else
+            {
+                MessageBox.Show("이미지 파일을 찾을 수 없습니다." + imagePath);
             }
         }
     }
