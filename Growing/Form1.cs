@@ -268,7 +268,7 @@ namespace Growing
 
         private void clickPNL_Click(object sender, EventArgs e)
         {
-            money += clickIncome;
+            money += clickIncome * 100000000;
             UpdateMoneyLabel();
         }
 
@@ -299,8 +299,6 @@ namespace Growing
             string workerName = worker.Name.Replace(" ", "");
 
             string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", $"{workerName}_{currentIndex + 1}.png");
-
-            Console.WriteLine($"이미지 경로: {imagePath}");
 
             if (File.Exists(imagePath))
             {
