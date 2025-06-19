@@ -23,6 +23,9 @@ namespace Growing
         private Dictionary<Timer, Worker> timerToWorker;
         private Dictionary<Timer, Label> timerToLabel;
         private Dictionary<Timer, int> timerRemainingTime;
+        private Dictionary<Timer, int> timerToImageIndex;
+        private Dictionary<Timer, PictureBox> timerToPictureBox;
+
 
         #region save 필요한 데이터 변수들
 
@@ -108,6 +111,14 @@ namespace Growing
                 { fifthJobTMR, workers[4] }
             };
 
+            timerToPictureBox = new Dictionary<Timer, PictureBox> {
+                { firstJobTMR, firstJobPB },
+                { secondJobTMR, secondJobPB },
+                { thirdJobTMR, thirdJobPB },
+                { forthJobTMR, forthJobPB },
+                { fifthJobTMR, fifthJobPB }
+            };
+
             timerToLabel = new Dictionary<Timer, Label>     {
                 { firstJobTMR, firstJobTimerLBL },
                 { secondJobTMR, secondJobTimerLBL },
@@ -117,6 +128,8 @@ namespace Growing
             };
 
             timerRemainingTime = new Dictionary<Timer, int>();
+            timerToImageIndex = new Dictionary<Timer, int>();
+
 
             foreach (var pair in timerToWorker)
             {
@@ -126,6 +139,8 @@ namespace Growing
                 {
                     pair.Key.Interval = pair.Value.Interval;
                     pair.Key.Start();
+
+                    UpdateWorkerImage(pair.Key);
                 }
             }
         }
@@ -154,6 +169,8 @@ namespace Growing
                 worker.IsHired = true;
                 tmr.Start();
                 UpdateMoneyLabel();
+                UpdateWorkerImage(tmr);
+
             }
         }
 
@@ -215,6 +232,8 @@ namespace Growing
 
                     // 타이머 초기화
                     timerRemainingTime[tmr] = worker.Interval;
+
+                    UpdateWorkerImage(tmr);
                 }
 
                 double secondsLeft = timerRemainingTime[tmr] / 1000.0;
@@ -262,9 +281,36 @@ namespace Growing
             expLBL.Text = $"경험치: {percent:0.0}%";
 
 
-
             // 레벨업 버튼 텍스트 업데이트
             levelupBTN.Text = $"레벨 업(F)\n{expbuttoncost:N0}원";
+        }
+
+        private void UpdateWorkerImage(Timer tmr)
+        {
+            if (!timerToImageIndex.ContainsKey(tmr))
+                timerToImageIndex[tmr] = 0;
+
+            int currentIndex = timerToImageIndex[tmr];
+            currentIndex = (currentIndex + 1) % 3;
+            timerToImageIndex[tmr] = currentIndex;
+
+            PictureBox pb = timerToPictureBox[tmr];
+            Worker worker = timerToWorker[tmr];
+            string workerName = worker.Name.Replace(" ", "");
+
+            string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", $"{workerName}_{currentIndex + 1}.png");
+
+            Console.WriteLine($"이미지 경로: {imagePath}");
+
+            if (File.Exists(imagePath))
+            {
+                pb.Image = Image.FromFile(imagePath);
+                Console.WriteLine("이미지 로드 성공");
+            }
+            else
+            {
+                Console.WriteLine("이미지 파일 없음");
+            }
         }
 
 

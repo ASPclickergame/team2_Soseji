@@ -55,7 +55,17 @@
             this.firstJobTimerLBL = new System.Windows.Forms.Label();
             this.updateCountdownTMR = new System.Windows.Forms.Timer(this.components);
             this.gameTMR = new System.Windows.Forms.Timer(this.components);
+            this.firstJobPB = new System.Windows.Forms.PictureBox();
+            this.secondJobPB = new System.Windows.Forms.PictureBox();
+            this.thirdJobPB = new System.Windows.Forms.PictureBox();
+            this.forthJobPB = new System.Windows.Forms.PictureBox();
+            this.fifthJobPB = new System.Windows.Forms.PictureBox();
             this.clickPNL.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.firstJobPB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.secondJobPB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thirdJobPB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.forthJobPB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fifthJobPB)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -128,6 +138,11 @@
             // 
             // clickPNL
             // 
+            this.clickPNL.Controls.Add(this.fifthJobPB);
+            this.clickPNL.Controls.Add(this.forthJobPB);
+            this.clickPNL.Controls.Add(this.thirdJobPB);
+            this.clickPNL.Controls.Add(this.secondJobPB);
+            this.clickPNL.Controls.Add(this.firstJobPB);
             this.clickPNL.Controls.Add(this.jusikBtn);
             this.clickPNL.Controls.Add(this.levelupBTN);
             this.clickPNL.Controls.Add(this.expLBL);
@@ -235,6 +250,56 @@
             this.firstJobTimerLBL.Size = new System.Drawing.Size(0, 21);
             this.firstJobTimerLBL.TabIndex = 0;
             // 
+            // firstJobPB
+            // 
+            this.firstJobPB.Location = new System.Drawing.Point(183, 87);
+            this.firstJobPB.Name = "firstJobPB";
+            this.firstJobPB.Size = new System.Drawing.Size(209, 234);
+            this.firstJobPB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.firstJobPB.TabIndex = 12;
+            this.firstJobPB.TabStop = false;
+            this.firstJobPB.Click += new System.EventHandler(this.clickPNL_Click);
+            // 
+            // secondJobPB
+            // 
+            this.secondJobPB.Location = new System.Drawing.Point(780, 87);
+            this.secondJobPB.Name = "secondJobPB";
+            this.secondJobPB.Size = new System.Drawing.Size(226, 234);
+            this.secondJobPB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.secondJobPB.TabIndex = 13;
+            this.secondJobPB.TabStop = false;
+            this.secondJobPB.Click += new System.EventHandler(this.clickPNL_Click);
+            // 
+            // thirdJobPB
+            // 
+            this.thirdJobPB.Location = new System.Drawing.Point(474, 87);
+            this.thirdJobPB.Name = "thirdJobPB";
+            this.thirdJobPB.Size = new System.Drawing.Size(212, 234);
+            this.thirdJobPB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.thirdJobPB.TabIndex = 14;
+            this.thirdJobPB.TabStop = false;
+            this.thirdJobPB.Click += new System.EventHandler(this.clickPNL_Click);
+            // 
+            // forthJobPB
+            // 
+            this.forthJobPB.Location = new System.Drawing.Point(474, 355);
+            this.forthJobPB.Name = "forthJobPB";
+            this.forthJobPB.Size = new System.Drawing.Size(215, 227);
+            this.forthJobPB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.forthJobPB.TabIndex = 15;
+            this.forthJobPB.TabStop = false;
+            this.forthJobPB.Click += new System.EventHandler(this.clickPNL_Click);
+            // 
+            // fifthJobPB
+            // 
+            this.fifthJobPB.Location = new System.Drawing.Point(780, 355);
+            this.fifthJobPB.Name = "fifthJobPB";
+            this.fifthJobPB.Size = new System.Drawing.Size(226, 227);
+            this.fifthJobPB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.fifthJobPB.TabIndex = 16;
+            this.fifthJobPB.TabStop = false;
+            this.fifthJobPB.Click += new System.EventHandler(this.clickPNL_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
@@ -258,6 +323,11 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.clickPNL.ResumeLayout(false);
             this.clickPNL.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.firstJobPB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.secondJobPB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thirdJobPB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.forthJobPB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fifthJobPB)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -291,6 +361,11 @@
         private System.Windows.Forms.Button levelupBTN;
         private System.Windows.Forms.Button jusikBtn;
         private System.Windows.Forms.Timer gameTMR;
+        private System.Windows.Forms.PictureBox thirdJobPB;
+        private System.Windows.Forms.PictureBox secondJobPB;
+        private System.Windows.Forms.PictureBox firstJobPB;
+        private System.Windows.Forms.PictureBox fifthJobPB;
+        private System.Windows.Forms.PictureBox forthJobPB;
     }
 }
 
