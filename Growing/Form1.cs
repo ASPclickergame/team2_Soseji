@@ -25,7 +25,7 @@ namespace Growing
         private Dictionary<Timer, int> timerRemainingTime;
         private Dictionary<Timer, int> timerToImageIndex;
         private Dictionary<Timer, PictureBox> timerToPictureBox;
-
+        
 
         #region save 필요한 데이터 변수들
 
@@ -73,6 +73,8 @@ namespace Growing
             UpdateMoneyLabel();
             UpdateLevelLabel();
             UpdateButtonStates();
+            UpdateClickIncomeLabel();
+            UpdateWorkerIncomeLabel();
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -170,7 +172,7 @@ namespace Growing
                 tmr.Start();
                 UpdateMoneyLabel();
                 UpdateWorkerImage(tmr);
-
+                UpdateWorkerIncomeLabel();
             }
         }
 
@@ -241,6 +243,11 @@ namespace Growing
             }
         }
 
+        public void UpdateClickIncomeLabel()
+        {
+            lblClickIncome.Text = $"클릭당 수익: {clickIncome:N0}원";
+        }
+
         private void firstJobBTN_Click(object sender, EventArgs e)
         {
             HireWorker(workers[0], firstJobTMR);
@@ -280,6 +287,8 @@ namespace Growing
             double percent = (double)experience / experiencenextlevel * 100;
             expLBL.Text = $"경험치: {percent:0.0}%";
 
+            expProgressBar.Maximum = experiencenextlevel;
+            expProgressBar.Value = Math.Min(experience, experiencenextlevel);
 
             // 레벨업 버튼 텍스트 업데이트
             levelupBTN.Text = $"레벨 업(F)\n{expbuttoncost:N0}원";
@@ -310,6 +319,15 @@ namespace Growing
                 Console.WriteLine("이미지 파일 없음");
             }
         }
+        public void UpdateWorkerIncomeLabel()
+        {
+            double totalPerSecond = workers
+                .Where(w => w.IsHired)
+                .Sum(w => (double)w.Income * 1000 / w.Interval);
+
+            lblWorkerIncome.Text = $"초당 알바 수익: {totalPerSecond:N2}원";
+        }
+
 
 
         //경험치 획득
@@ -335,6 +353,7 @@ namespace Growing
             }
 
             UpdateLevelLabel();
+            UpdateClickIncomeLabel();
         }
 
         //레벨업 버튼
