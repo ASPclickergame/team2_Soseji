@@ -85,7 +85,7 @@
             // moneyLBL
             // 
             this.moneyLBL.AutoSize = true;
-            this.moneyLBL.Location = new System.Drawing.Point(146, 15);
+            this.moneyLBL.Location = new System.Drawing.Point(133, 15);
             this.moneyLBL.Name = "moneyLBL";
             this.moneyLBL.Size = new System.Drawing.Size(42, 21);
             this.moneyLBL.TabIndex = 1;
@@ -95,7 +95,7 @@
             // 
             this.fifthJobBTN.Location = new System.Drawing.Point(12, 656);
             this.fifthJobBTN.Name = "fifthJobBTN";
-            this.fifthJobBTN.Size = new System.Drawing.Size(257, 53);
+            this.fifthJobBTN.Size = new System.Drawing.Size(282, 53);
             this.fifthJobBTN.TabIndex = 6;
             this.fifthJobBTN.Text = "건물주";
             this.fifthJobBTN.UseVisualStyleBackColor = true;
@@ -105,7 +105,7 @@
             // 
             this.forthJobBTN.Location = new System.Drawing.Point(12, 580);
             this.forthJobBTN.Name = "forthJobBTN";
-            this.forthJobBTN.Size = new System.Drawing.Size(257, 53);
+            this.forthJobBTN.Size = new System.Drawing.Size(282, 53);
             this.forthJobBTN.TabIndex = 7;
             this.forthJobBTN.Text = "공무원";
             this.forthJobBTN.UseVisualStyleBackColor = true;
@@ -115,7 +115,7 @@
             // 
             this.thirdJobBTN.Location = new System.Drawing.Point(12, 502);
             this.thirdJobBTN.Name = "thirdJobBTN";
-            this.thirdJobBTN.Size = new System.Drawing.Size(257, 53);
+            this.thirdJobBTN.Size = new System.Drawing.Size(282, 53);
             this.thirdJobBTN.TabIndex = 8;
             this.thirdJobBTN.Text = "편의점 알바";
             this.thirdJobBTN.UseVisualStyleBackColor = true;
@@ -125,7 +125,7 @@
             // 
             this.secondJobBTN.Location = new System.Drawing.Point(12, 426);
             this.secondJobBTN.Name = "secondJobBTN";
-            this.secondJobBTN.Size = new System.Drawing.Size(257, 53);
+            this.secondJobBTN.Size = new System.Drawing.Size(282, 53);
             this.secondJobBTN.TabIndex = 9;
             this.secondJobBTN.Text = "전단지 알바";
             this.secondJobBTN.UseVisualStyleBackColor = true;
@@ -135,7 +135,7 @@
             // 
             this.firstJobBTN.Location = new System.Drawing.Point(12, 356);
             this.firstJobBTN.Name = "firstJobBTN";
-            this.firstJobBTN.Size = new System.Drawing.Size(257, 53);
+            this.firstJobBTN.Size = new System.Drawing.Size(282, 53);
             this.firstJobBTN.TabIndex = 10;
             this.firstJobBTN.Text = "노숙자";
             this.firstJobBTN.UseVisualStyleBackColor = true;
@@ -306,7 +306,7 @@
             // thirdJobTimerLBL
             // 
             this.thirdJobTimerLBL.AutoSize = true;
-            this.thirdJobTimerLBL.Location = new System.Drawing.Point(275, 518);
+            this.thirdJobTimerLBL.Location = new System.Drawing.Point(300, 518);
             this.thirdJobTimerLBL.Name = "thirdJobTimerLBL";
             this.thirdJobTimerLBL.Size = new System.Drawing.Size(0, 21);
             this.thirdJobTimerLBL.TabIndex = 5;
@@ -314,7 +314,7 @@
             // fifthJobTimerLBL
             // 
             this.fifthJobTimerLBL.AutoSize = true;
-            this.fifthJobTimerLBL.Location = new System.Drawing.Point(275, 672);
+            this.fifthJobTimerLBL.Location = new System.Drawing.Point(300, 672);
             this.fifthJobTimerLBL.Name = "fifthJobTimerLBL";
             this.fifthJobTimerLBL.Size = new System.Drawing.Size(0, 21);
             this.fifthJobTimerLBL.TabIndex = 4;
@@ -322,7 +322,7 @@
             // forthJobTimerLBL
             // 
             this.forthJobTimerLBL.AutoSize = true;
-            this.forthJobTimerLBL.Location = new System.Drawing.Point(275, 596);
+            this.forthJobTimerLBL.Location = new System.Drawing.Point(300, 596);
             this.forthJobTimerLBL.Name = "forthJobTimerLBL";
             this.forthJobTimerLBL.Size = new System.Drawing.Size(0, 21);
             this.forthJobTimerLBL.TabIndex = 3;
@@ -339,7 +339,7 @@
             // secondJobTimerLBL
             // 
             this.secondJobTimerLBL.AutoSize = true;
-            this.secondJobTimerLBL.Location = new System.Drawing.Point(275, 442);
+            this.secondJobTimerLBL.Location = new System.Drawing.Point(300, 442);
             this.secondJobTimerLBL.Name = "secondJobTimerLBL";
             this.secondJobTimerLBL.Size = new System.Drawing.Size(0, 21);
             this.secondJobTimerLBL.TabIndex = 1;
@@ -347,7 +347,7 @@
             // firstJobTimerLBL
             // 
             this.firstJobTimerLBL.AutoSize = true;
-            this.firstJobTimerLBL.Location = new System.Drawing.Point(275, 372);
+            this.firstJobTimerLBL.Location = new System.Drawing.Point(300, 372);
             this.firstJobTimerLBL.Name = "firstJobTimerLBL";
             this.firstJobTimerLBL.Size = new System.Drawing.Size(0, 21);
             this.firstJobTimerLBL.TabIndex = 0;

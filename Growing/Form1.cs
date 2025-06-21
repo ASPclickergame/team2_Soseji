@@ -195,7 +195,7 @@ namespace Growing
                 }
                 else if (w.IsHired)
                 {
-                    btn.Text = $"{w.Name} (Lv {w.Level}): {w.Interval / 1000}초당 {w.getCurrentIncome():N0}원";
+                    btn.Text = $"{w.Name}(Lv.{w.Level}): {w.Interval / 1000}초당 {w.getCurrentIncome():N0}원";
                     btn.BackColor = Color.LightGreen;
                 }
                 else if (money >= w.Cost)
