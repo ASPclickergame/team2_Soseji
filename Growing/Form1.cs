@@ -190,12 +190,12 @@ namespace Growing
 
                 if (level < w.RequiredLevel)
                 {
-                    btn.Text = $"{w.Name} (Lv {w.RequiredLevel}) : 잠김";
+                    btn.Text = $"{w.Name} : 잠김";
                     btn.BackColor = Color.Gray;
                 }
                 else if (w.IsHired)
                 {
-                    btn.Text = $"{w.Name}: {w.Interval / 1000}초당 {w.Income:N0}원";
+                    btn.Text = $"{w.Name} (Lv {w.Level}): {w.Interval / 1000}초당 {w.getCurrentIncome():N0}원";
                     btn.BackColor = Color.LightGreen;
                 }
                 else if (money >= w.Cost)
@@ -210,6 +210,26 @@ namespace Growing
                 }
             }
         }
+        private void LevelUpWorker(Worker worker)
+        {
+            int levelUpCost = 1000 * worker.Level; // 레벨업 비용 (원하면 조정 가능)
+
+            if (money < levelUpCost)
+            {
+                MessageBox.Show($"돈이 부족합니다! (필요 금액: {levelUpCost}원)");
+                return;
+            }
+
+            money -= levelUpCost;
+            worker.levelUp();
+
+            UpdateMoneyLabel();
+            UpdateWorkerIncomeLabel();
+            UpdateButtonStates();
+
+            MessageBox.Show($"{worker.Name} 레벨업! 현재 레벨: {worker.Level}, 수익: {worker.getCurrentIncome()}원");
+        }
+
 
         private void UpdateRemainingTimes(object sender, EventArgs e)
         {
@@ -229,7 +249,7 @@ namespace Growing
                 if (timerRemainingTime[tmr] <= 0)
                 {
                     // 수익 지급
-                    money += worker.Income;
+                    money += worker.getCurrentIncome();
                     UpdateMoneyLabel();
 
                     // 타이머 초기화
@@ -250,27 +270,62 @@ namespace Growing
 
         private void firstJobBTN_Click(object sender, EventArgs e)
         {
-            HireWorker(workers[0], firstJobTMR);
+            if (workers[0].IsHired)
+            {
+                LevelUpWorker(workers[0]);
+            }
+            else
+            {
+                HireWorker(workers[0], firstJobTMR);
+            }
         }
 
         private void secondJobBTN_Click(object sender, EventArgs e)
         {
-            HireWorker(workers[1], secondJobTMR);
+            if (workers[1].IsHired)
+            {
+                LevelUpWorker(workers[1]);
+            }
+            else
+            {
+                HireWorker(workers[1], secondJobTMR);
+            }
         }
 
         private void thirdJobBTN_Click(object sender, EventArgs e)
         {
-            HireWorker(workers[2], thirdJobTMR);
+            if (workers[2].IsHired)
+            {
+                LevelUpWorker(workers[2]);
+            }
+            else
+            {
+                HireWorker(workers[2], thirdJobTMR);
+            }
         }
 
         private void forthJobBTN_Click(object sender, EventArgs e)
         {
-            HireWorker(workers[3], forthJobTMR);
+            if (workers[3].IsHired)
+            {
+                LevelUpWorker(workers[3]);
+            }
+            else
+            {
+                HireWorker(workers[3], forthJobTMR);
+            }
         }
 
         private void fifthJobBTN_Click(object sender, EventArgs e)
         {
-            HireWorker(workers[4], fifthJobTMR);
+            if (workers[4].IsHired)
+            {
+                LevelUpWorker(workers[4]);
+            }
+            else
+            {
+                HireWorker(workers[4], fifthJobTMR);
+            }
         }
 
         private void clickPNL_Click(object sender, EventArgs e)
@@ -323,7 +378,7 @@ namespace Growing
         {
             double totalPerSecond = workers
                 .Where(w => w.IsHired)
-                .Sum(w => (double)w.Income * 1000 / w.Interval);
+                .Sum(w => (double)w.getCurrentIncome() * 1000 / w.Interval);
 
             lblWorkerIncome.Text = $"초당 알바 수익: {totalPerSecond:N2}원";
         }
@@ -331,7 +386,7 @@ namespace Growing
 
 
         //경험치 획득
-        private void gainexperience(int amount)
+        private void GainExperience(int amount)
         {
             experience += amount;
 
@@ -362,7 +417,7 @@ namespace Growing
             if (money >= expbuttoncost)
             {
                 money -= expbuttoncost;
-                gainexperience(expperclick);
+                GainExperience(expperclick);
                 UpdateMoneyLabel();
             }
             else
@@ -392,5 +447,7 @@ namespace Growing
                 levelupBTN.PerformClick();
             }
         }
+
+        
     }
 }

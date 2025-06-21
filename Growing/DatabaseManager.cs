@@ -83,7 +83,7 @@ namespace Growing
             List<string> workerStrings = new List<string>();
             foreach (var w in _data.workers)
             {
-                workerStrings.Add($"{w.Name}|{w.Cost}|{w.Income}|{w.Interval}|{w.IsHired}|{w.RequiredLevel}");
+                workerStrings.Add($"{w.Name}|{w.Cost}|{w.Income}|{w.Interval}|{w.IsHired}|{w.RequiredLevel}|{w.Level}|{w.IncomeMultiplier}");
             }
             lines.Add(string.Join(";", workerStrings));
 
@@ -151,6 +151,8 @@ namespace Growing
                                         int.Parse(wp[5])
                                     );
                                     w.IsHired = bool.Parse(wp[4]);
+                                    w.Level = int.Parse(wp[6]);
+                                    w.IncomeMultiplier = double.Parse(wp[7]);
                                     data.workers.Add(w);
                                 }
                             }
