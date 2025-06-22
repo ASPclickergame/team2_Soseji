@@ -30,17 +30,49 @@ namespace Growing
         public MDLstock(Form1 main)
         {
             InitializeComponent();
+            initializeLabels();
+            LoadingStockData();
+
             mainForm = main;
             timer1.Start();
         }
 
+        public void LoadingStockData()
+        {
+
+            StockData data = DatabaseManager.GetInstance().LoadStockData();
+
+            if (data == null)
+            {
+                stocks.Add(new Stock("광운전자", 1000, this));
+                stocks.Add(new Stock("광운중공업", 500, this));
+                stocks.Add(new Stock("광운자동차", 5000, this));
+                stocks.Add(new Stock("광운소프트", 2000, this));
+            }
+            else
+            {
+                for (int i = 0; i < labelsPrice.Count && i < data.labelsPrice.Count; i++)
+                {
+                    labelsPrice[i].Text = data.labelsPrice[i];
+                }
+                for (int i = 0; i < labelsHave.Count && i < data.labelsHave.Count; i++)
+                {
+                    labelsHave[i].Text = data.labelsHave[i];
+                }
+
+                stocks.Add(new Stock("광운전자", int.Parse(labelsPrice[0].Text), this));
+                stocks.Add(new Stock("광운중공업", int.Parse(labelsPrice[1].Text), this));
+                stocks.Add(new Stock("광운자동차", int.Parse(labelsPrice[2].Text), this));
+                stocks.Add(new Stock("광운소프트", int.Parse(labelsPrice[3].Text), this));
+                stocks[0].HaveStock = int.Parse(labelsHave[0].Text);
+                stocks[1].HaveStock = int.Parse(labelsHave[1].Text);
+                stocks[2].HaveStock = int.Parse(labelsHave[2].Text);
+                stocks[3].HaveStock = int.Parse(labelsHave[3].Text);
+            }
+        }
+
         private void MDlstock_Load(object sender, EventArgs e)
         {
-            stocks.Add(new Stock("광운전자", 1000,this));
-            stocks.Add(new Stock("광운중공업", 500,this));
-            stocks.Add(new Stock("광운자동차", 5000, this));
-            stocks.Add(new Stock("광운소프트", 2000, this));
-
             priceHistories.Clear();
             for (int i = 0; i < stocks.Count; i++)
                 priceHistories.Add(new List<int>());
@@ -48,8 +80,6 @@ namespace Growing
 
             initializeLabels();
             UpdateLabels();
-
-            
         }
 
         public void initializeLabels()
@@ -92,6 +122,8 @@ namespace Growing
             stocks[selectedIdx].BuyStock(count, ref mainForm.money);
             UpdateLabels();
             mainForm.UpdateMoneyLabel(); // 메인폼 라벨도 즉시 갱신
+
+            SaveStocks();
         }
 
         private void sellBtn_Click(object sender, EventArgs e)
@@ -108,6 +140,8 @@ namespace Growing
             stocks[selectedIdx].SellStock(count, ref mainForm.money);
             UpdateLabels();
             mainForm.UpdateMoneyLabel();
+
+            SaveStocks();
         }
 
         private void btnSelect0_Click(object sender, EventArgs e) { selectedIdx = 0; UpdateSelectUI(); }
@@ -211,6 +245,19 @@ namespace Growing
         private void stockNum3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void MDLstock_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SaveStocks();
+        }
+
+        public void SaveStocks()
+        {
+            var priceStrings = labelsPrice.Select(lbl => lbl.Text).ToList();
+            var haveStrings = labelsHave.Select(lbl => lbl.Text).ToList();
+
+            DatabaseManager.GetInstance().SaveStockData(priceStrings, haveStrings);
         }
     }
 }

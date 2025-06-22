@@ -32,12 +32,18 @@ namespace Growing
             this.expButtonCost = _expButtonCost;
         }
 
-
         public void SetWorkers(List<Worker> _workers)
         {
             workers.Clear();
             workers = _workers;
         }
+    }
+
+    [Serializable]
+    public class StockData
+    {
+        public List<String> labelsPrice = new List<String>();
+        public List<String> labelsHave = new List<String>();
     }
 
     // data를 관리하는 함수
@@ -133,7 +139,7 @@ namespace Growing
 
                     case "[Workers]":
                         {
-                            if (data == null) continue; // Player가 먼저 정의되어야 함
+                            if (data == null) continue;
 
                             string[] workerParts = line.Split(';');
                             foreach (string wpStr in workerParts)
@@ -158,10 +164,36 @@ namespace Growing
                             }
                             break;
                         }
-
-                        // 앞으로 확장할 수 있는 구조
-                        // case "[Upgrades]": ...
                 }
+            }
+
+            return data;
+        }
+
+        public void SaveStockData(List<string> prices, List<string> isHaves)
+        {
+            string path = Path.Combine(savePath, "StockData.csv");
+            List<string> lines = new List<string>
+    {
+        "[Stock]",
+        string.Join(",", prices),
+        string.Join(",", isHaves)
+    };
+            File.WriteAllLines(path, lines);
+        }
+
+        public StockData LoadStockData()
+        {
+            string path = Path.Combine(savePath, "StockData.csv");
+            if (!File.Exists(path)) return null;
+
+            string[] lines = File.ReadAllLines(path);
+            StockData data = new StockData();
+
+            if (lines.Length >= 3 && lines[0] == "[Stock]")
+            {
+                data.labelsPrice = lines[1].Split(',').ToList();
+                data.labelsHave = lines[2].Split(',').ToList();
             }
 
             return data;
